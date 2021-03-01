@@ -1,0 +1,16 @@
+.container{
+    background-color: #F5F5F5;
+}
+
+.genwik-font {
+    font-family: 'Pacifico', cursive;
+}
+
+.genwik-title {
+    font-size: 4rem;
+}
+
+.width-elements {
+    width: 50vw;
+    margin: auto;
+}
