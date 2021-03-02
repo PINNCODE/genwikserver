@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenWik Server</title>
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+</head>
+<body class="container">
+
+
+<div class="row mt-5 mb-5">
+
+    <div class="col-md-12 text-center">
+        <h1 class="genwik-font genwik-title">
+            GenWik Server
+            <h6>v1</h6>
+            <h6> Server status: <span id="serverStatus"></p></h6>
+        </h1>
+        <h5>Herramienta para generar GUI de tus componentes.</h5>
+        <hr>
+    </div>
+
+    <div class="col-md-12">
+        <div class=" mb-3 text-center width-elements">
+            <input class="form-control" type="file" id="formFiles" multiple>
+            <label class="form-label">Seleccione uno o más archivos carnet</label>
+        </div>
+    </div>
+
+    <div class="col-md-12" id="table">
+        <div class="width-elements">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Nombre Carnet</th>
+                </tr>
+                </thead>
+                <tbody id="carnets">
+                </tbody>
+            </table>
+            <button id="btnLoad" type="button" class="btn btn-primary float-end"><i class="fas fa-upload"></i> Cargar carnet's</button>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="./socket.io/socket.io.js"></script>
+<script src="../js/socket-client.js"></script>
+
+</body>
+</html>

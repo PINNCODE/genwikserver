@@ -8,28 +8,25 @@ let filesData;
 
 formFiles.addEventListener('change', handleFiles, false);
 
-function readFile(input){
-    addItemTable(input.name);
+const readFile = (file, onLoadCallback) => {
     let reader = new FileReader();
-
-    reader.readAsText(input)
-
-    reader.onload = () => {
-        return reader.result;
-    }
+    reader.onload = onLoadCallback;
+    reader.readAsText(file)
 }
-
-function handleFiles() {
+ 
+function handleFiles () {
     document.getElementById("carnets").innerHTML = '';
     filesData = this.files;
 
     if (filesData.length > 0){
-        Array.from(filesData).map( file => readFile(file))
+        Array.from(filesData).forEach( file => {
+            addItemTable(file.name);
+        })
     }
     
 }
 
-function addItemTable(nameFile){
+const addItemTable = (nameFile) => {
     document.getElementById("table").style.display = "block";
     let tr = document.createElement("tr");
     let td = document.createElement("td");
@@ -41,13 +38,16 @@ function addItemTable(nameFile){
 
 btnLoad.addEventListener('click', () => {
 
-    const payload = Array.from(filesData).map( file => {
-        return {
-            name : file.name,
-            data: file
-        }
+     Array.from(filesData).forEach( file => {
+        readFile(file, (data) => {
+            let payload = {
+                name: file.name,
+                data: JSON.parse(data.target.result)
+            }
+            socket.emit('loadFiles', payload);
+        })
     })
-    socket.emit('loadFiles', payload);
+
 
 })
 

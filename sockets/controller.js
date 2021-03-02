@@ -1,4 +1,4 @@
-
+const { getCarnetData } = require('./design-patterns')
 
 
 const socketController = (socket) => {
@@ -10,10 +10,7 @@ const socketController = (socket) => {
     });
 
     socket.on('loadFiles', ( payload ) => {
-        
-        console.log(payload)
-        socket.broadcast.emit('loadFiles', payload );
-
+        getCarnetData(payload);
     })
 
 }
