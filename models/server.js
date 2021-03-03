@@ -1,4 +1,5 @@
 const express = require('express');
+const colors = require('colors');
 
 const { socketController } = require('../sockets/controller');
 
@@ -31,7 +32,7 @@ class Server {
     routes() {
         
         this.app.get('*', (req, res) => {
-            res.render('home' , );
+            res.render('home');
         });
         
     }
@@ -44,7 +45,10 @@ class Server {
 
     listen() {
         this.server.listen( this.port, () => {
-            console.log('Servidor corriendo en puerto', this.port );
+            console.log('' +
+                'Servidor corriendo en puerto'.brightGreen,
+                colors.underline(`http://localhost:${this.port}/`)
+            );
         });
     }
 
