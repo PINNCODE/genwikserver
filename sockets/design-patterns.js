@@ -1,21 +1,30 @@
-const fs = require('fs');
+const { createConfigFile, createUIElements } = require("./file-system");
 
 let guiData = {
     nombre: '',
     elementosGraficos: {
         entradas: [],
         salida: {
-            nombre: '',
-            tipo: ''
+            nombre: 'itemprb',
+            tipo: 'rout'
         }
     },
 };
 
-const getCarnetData = ( carnetData ) => {
-    guiData.nombre = carnetData.data.nivelCero.claveComponente;
-    guiData.elementosGraficos.entradas = processInputs(carnetData.data.nivelCero.sintaxis);
-    guiConfigFile(guiData)
+const getCarnetData = ( carnetData, socket ) => {
+    carnetData.forEach(
+        (carnet, i) => {
+            guiData.nombre = carnet.data.nivelCero.claveComponente;
+            guiData.elementosGraficos.entradas = processInputs(carnet.data.nivelCero.sintaxis);
+            guiData.elementosGraficos.salida.nombre = carnet.data.nivelCero.claveComponente;
+            guiData.elementosGraficos.salida.tipo = 'rout';
 
+            guiConfigFile(guiData)
+            if (carnetData.length - 1 === i){
+                socket.emit('config-files-success', true );
+            }
+        }
+    )
 }
 
 const processInputs =  (inputs) => {
@@ -44,12 +53,7 @@ const processInputs =  (inputs) => {
 }
 
 const guiConfigFile = (data) => {
-    console.log('Creando archivo: ', data.nombre);
-
-    fs.writeFileSync(`./gui-config/${data.nombre}.json`, JSON.stringify(data), (err) => {
-        if (err) console.log(`Error al escribir el archivo ${data.nombre}.json: `, err)
-        console.log('Archivo escrito: ', data.nombre);
-    })
+    createConfigFile(data)
 }
 
 const intPattern = (input) => {

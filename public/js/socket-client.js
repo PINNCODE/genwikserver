@@ -1,6 +1,7 @@
 
 // Referencias del HTML
 const serverStatus  = document.querySelector('#serverStatus');
+document.getElementById("genAnimation").style.display = "none";
 const formFiles = document.querySelector("#formFiles");
 document.getElementById("table").style.display = "none";
 const btnLoad = document.querySelector('#btnLoad');
@@ -8,10 +9,12 @@ let filesData;
 
 formFiles.addEventListener('change', handleFiles, false);
 
+const socket = io();
+
 const readFile = (file, onLoadCallback) => {
     let reader = new FileReader();
-    reader.onload = onLoadCallback;
     reader.readAsText(file)
+    reader.onload = onLoadCallback;
 }
  
 function handleFiles () {
@@ -38,20 +41,26 @@ const addItemTable = (nameFile) => {
 
 btnLoad.addEventListener('click', () => {
 
-     Array.from(filesData).forEach( file => {
+    document.getElementById("genWik").style.display = "none";
+    document.getElementById("genAnimation").style.display = "block";
+
+
+    let finaldata = [];
+
+    Array.from(filesData).forEach( (file,i) => {
         readFile(file, (data) => {
-            let payload = {
+            finaldata.push({
                 name: file.name,
                 data: JSON.parse(data.target.result)
+            });
+            if (filesData.length -1 === i){
+                socket.emit('loadFiles', finaldata);
             }
-            socket.emit('loadFiles', payload);
         })
+
     })
 
-
 })
-
-const socket = io();
 
 socket.on('connect', () => {
     // console.log('Conectado');
@@ -65,4 +74,16 @@ socket.on('disconnect', () => {
     serverStatus.innerHTML = 'Desconectado';
     serverStatus.setAttribute('class', 'text-danger');
 });
+
+socket.on('config-files-success', (payload) => {
+    console.log(payload)
+   if (payload){
+       setTimeout(() => {
+           document.getElementById("genAnimation").style.display = "none";
+           document.getElementById("genWik").style.display = "none";
+           window.location.replace("http://localhost:8080/gui");
+       }, 1000)
+   }
+})
+
 

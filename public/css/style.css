@@ -7,11 +7,133 @@
 }
 
 .genwik-title {
-    margin-top: 5%;
     font-size: 6rem;
 }
 
 .width-elements {
     width: 50vw;
     margin: auto;
+}
+
+.bg-light {
+    background-color: #f5f5f5 !important;
+}
+
+.p-select{
+    margin: 10px;
+}
+
+/*
+    DNA ANIMATION
+ */
+
+.body-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--grey-color);
+}
+:root {
+    --grey-color: #f5f5f5;
+    --blue-color: #0d6efd;
+    --red-color: #dc3545;
+}
+
+.animation-height{
+    height: 50vh;
+}
+.dna-loader {
+    --line-width: 3rem;
+    --line-height: 0.2rem;
+    --ball-width: 0.75rem;
+    --line-color: black;
+    --ball-color: white;
+    --anime-duration: 0.5s;
+    --anime: var(--anime-duration) ease-in-out alternate infinite;
+    --slide-x: calc(calc(var(--line-width) - var(--ball-width)) / 2);
+}
+.dna-loader .chain {
+    --anime-delay: calc(var(--anime-duration) * var(--i) * -0.4);
+    position: relative;
+    display: flex;
+    margin-top: 20px;
+    align-items: center;
+    width: var(--line-width);
+}
+.dna-loader .chain:nth-child(-n + 8) .ball::before {
+    --ball-color: var(--red-color);
+}
+.dna-loader .chain:nth-child(-n + 8) .ball::after {
+    --ball-color: var(--blue-color);
+}
+.dna-loader .chain:nth-child(-n + 4) .ball::before {
+    --ball-color: var(--blue-color);
+}
+.dna-loader .chain:nth-child(-n + 4) .ball::after {
+    --ball-color: var(--red-color);
+}
+.dna-loader .chain .line {
+    width: 100%;
+    height: var(--line-height);
+    background: var(--line-color);
+    animation: scale-x-out var(--anime) var(--anime-delay);
+}
+.dna-loader .chain .ball {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.space-y-3 { margin-top: -0.75rem; }
+
+.dna-loader .chain .ball::before, .dna-loader .chain .ball::after {
+    position: relative;
+    content: "";
+    width: var(--ball-width);
+    height: var(--ball-width);
+    background: var(--ball-color);
+    border-radius: 50%;
+    animation: var(--anime) var(--anime-delay);
+}
+.dna-loader .chain .ball::before {
+    animation-name: slide-right;
+}
+.dna-loader .chain .ball::after {
+    animation-name: slide-left;
+}
+@keyframes scale-x-out {
+    to {
+        transform: scaleX(0);
+    }
+}
+@keyframes slide-left {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(calc(var(--slide-x) * -1));
+    }
+}
+@keyframes slide-right {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(calc(var(--slide-x) * 1));
+    }
+}
+
+.fade-in {
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
+}
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
 }

@@ -1,5 +1,7 @@
 const express = require('express');
 const colors = require('colors');
+const hbs = require('hbs');
+const path = require("path")
 
 const { socketController } = require('../sockets/controller');
 
@@ -10,6 +12,7 @@ class Server {
         this.port   = process.env.PORT;
         this.server = require('http').createServer( this.app );
         this.io     = require('socket.io')( this.server );
+        hbs.registerPartials(path.join(__dirname, "../", "/views/partials"));
         this.app.set('view engine', 'hbs');
 
         this.paths = {};
@@ -31,16 +34,18 @@ class Server {
 
     routes() {
         
-        this.app.get('*', (req, res) => {
+        this.app.get('/', (req, res) => {
             res.render('home');
+        });
+
+        this.app.get('/gui', (req, res) => {
+            res.render('gui');
         });
         
     }
 
     sockets() {
-
         this.io.on('connection', socketController );
-
     }
 
     listen() {
