@@ -25,7 +25,7 @@ const resetDir =  async (dirDelete) => {
     await fs.rmdirSync(dirDelete, { recursive: true });
 }
 
-const createUIElements = async (socket) => {
+const readUIElements = async (socket) => {
     await fs.readdir(dir, ( err, files) => {
         if (err) throw err
         let data = files.map( (filePath, index) => readJsonFile(`${dir}/${filePath}`));
@@ -33,17 +33,21 @@ const createUIElements = async (socket) => {
     })
 }
 
+const createUIElements = (socket, data) => {
+    console.log(data)
+    createHbs(data)
+}
+
 const readJsonFile = (path) => {
     let rawdata = fs.readFileSync(path);
     let data = JSON.parse(rawdata);
     return data
-    //console.log(data)
-    //createHbs(data)
 }
+
+
 
 const createHbs = (uiElements) => {
     parseInputs(uiElements)
-
 }
 
 const parseInputs = (uiFrom) => {
@@ -102,5 +106,6 @@ const createInput = (formName, inputData) => {
 module.exports = {
     createConfigFile,
     resetDir,
+    readUIElements,
     createUIElements
 };

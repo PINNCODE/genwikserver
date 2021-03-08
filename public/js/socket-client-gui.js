@@ -6,6 +6,8 @@ let filesData;
 
 const socket = io();
 
+document.getElementById("btnGen").style.display = "none";
+
 socket.on('connect', () => {
     //console.log('Conectado');
     serverStatus.innerHTML = 'Conectado';
@@ -109,6 +111,8 @@ const setOutPutOptions = () => {
     $( "#sortableContainer" ).sortable({
         disabled: true
     });
+    document.getElementById("btnConfirm").style.display = "none";
+    document.getElementById("btnGen").style.display = "inline-block";
     setTimeout( () => {
         var itemOrder = $('#sortableContainer').sortable("toArray");
         itemOrder.forEach( ( item, index ) => {
@@ -185,31 +189,38 @@ const setInputs = (item ,index, itemOrder) => {
 const getParams = () => {
     let newParams = [];
     var itemOrder = $('#sortableContainer').sortable("toArray");
-    itemOrder.forEach( ( item, index ) => {
-        if (index === 0){
-            let params = filesData.filter( data => item === data.nombre);
-            newParams.push(params[0])
-        } else {
-            let input = document.getElementById(`${item}_select_input`).value;
-            let output = document.getElementById(`${item}_select_output`).value;
-            console.log(input, output)
-            let params = filesData.map( data => {
-                if (item === data.nombre){
-                    console.log(data)
-                    data.elementosGraficos.entradas.map( entrada => {
-                        if (entrada.param === input){
-                            entrada.valorDefecto = output
-                            entrada.soloLectura = true
-                        }
-                        return entrada
-                    })
-                }
-                return data;
-            });
-            console.log(params)
-        }
-
-    })
+    if (itemOrder.length) {
+        let params = filesData.filter( data => itemOrder[0] === data.nombre);
+        newParams.push(params[0])
+        console.log(newParams)
+        socket.emit('genUi', newParams);
+    } else {
+        itemOrder.forEach( ( item, index ) => {
+            console.log(item);
+            if (index === 0){
+                let params = filesData.filter( data => item === data.nombre);
+                newParams.push(params[0])
+            } else {
+                let input = document.getElementById(`${item}_select_input`).value;
+                let output = document.getElementById(`${item}_select_output`).value;
+                console.log(input, output)
+                let params = filesData.map( data => {
+                    if (item === data.nombre){
+                        console.log(data)
+                        data.elementosGraficos.entradas.map( entrada => {
+                            if (entrada.param === input){
+                                entrada.valorDefecto = output
+                                entrada.soloLectura = true
+                            }
+                            return entrada
+                        })
+                    }
+                    return data;
+                });
+            }
+        })
+    }
+    
 }
 
 
