@@ -12,8 +12,7 @@ class Server {
         this.port   = process.env.PORT;
         this.server = require('http').createServer( this.app );
         this.io     = require('socket.io')( this.server );
-        hbs.registerPartials(path.join(__dirname, "../", "/views/partials"));
-        this.app.set('view engine', 'hbs');
+        this.app.set('view engine', 'hbs');hbs.registerPartials(path.join(__dirname, "../", "/views/partials"));
 
         this.paths = {};
 
@@ -38,8 +37,16 @@ class Server {
             res.render('home');
         });
 
+        this.app.get('/config', (req, res) => {
+            res.render('configGui');
+        });
+
         this.app.get('/gui', (req, res) => {
-            res.render('gui');
+            res.render('componentGUI');
+        });
+
+        this.app.get('/result', (req, res) => {
+            res.render('result');
         });
         
     }

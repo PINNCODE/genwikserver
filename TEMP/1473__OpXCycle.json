@@ -1,1 +1,114 @@
-{"nivelCero":{"claveComponente":"1473__OpXCycle","nombreComponente":"Cycle crossover operator","tipo":"Orientado al servicio","clasACM":"Software and its engineering","autores":[{"nombreAutor":"Ing. Jonathan Rojas Simón","correoAutor":"IDS_Jonathan_Rojas@hotmail.com","aliasGitlab":"IDS_Jonathan_Rojas"},{"nombreAutor":"Dr. René Arnulfo García Hernández","correoAutor":"renearnulfo@hotmail.com","aliasGitlab":"renearnulfo"}],"descProblema":"El operador de cruza por ciclos realiza el intercambio genético\nde un conjunto de individuos mediante el argoritmo de cruza por\nciclos (CX). Esta cruza es realizada mediante una probabilidad \n(-XPROB) determinada por el usuario (opcional). El operador de\ncruza por ciclos es una técnica de cruza propuesta por Oliver,\nSmith y Holland en 1987 (Oliver, Smith & Holland, 1987).\n\nNOTA: La probabilidad de cruza permite generar cruzas entre \n\t  varios pares de individuos padres\n\nBásicamente el operador realiza el intercambio genético mediante \ntres sencillos pasos, los cuales son:\n\n1. Determinar un ciclo mediante las posiciones de los valores\n   de los padres.\n2. Copiar los valores que están en el ciclo del padre 1 para \n   generar el primer descendiente.\n3. Rellenar los genes restantes del descendiente con los valores\n   no comprendidos del ciclo del padre 2\n4. Repetir los pasos 1, 2 y 3 tomando como referencia el padre 2\n\nPara más detalles sobre la ejecución de este componente y \nconsultar sobre el intercambio genético de este operador se\nrecomienda visualizar el siguiente video: \n\nhttps://youtu.be/pWAK_CxxO0M","reqFuncionales":["N/A"],"reqNoFuncionales":["N/A"],"aportacion":"N/A","similitud":"N/A","sintaxis":[{"param":"CONFIG","tipoparam":"rout","descripcion":"Ruta y nombre del archivo de texto donde se describen los parámetros descritos debajo"},{"param":"FWORK","tipoparam":"rout","descripcion":"Directorio de trabajo por el cual se realizará el enlace con las subcarpetas contenidas en el."},{"param":"FACTG","tipoparam":"rout","descripcion":"Nombre del directorio que contiene los individuos de la actual generación"},{"param":"FPOP","tipoparam":"rout","descripcion":"Nombre del directorio donde recupera (-FACTG) y almacena (-FNEXTG) la información genética de la población modificada."},{"param":"FSELECT","tipoparam":"int","descripcion":"Archivo de texto que enlista todos los individuos padres"},{"param":"NI","tipoparam":"int","descripcion":"Número de individuos de cada generación"},{"param":"NELITE","tipoparam":"int","descripcion":"Número de individuos elite de cada generación"},{"param":"XPROB","tipoparam":"int","descripcion":"Número entero que determina la probabilidad de cruza (en un rango de 0 a 100), si esta etiqueta no se especifica "},{"param":"REPORTCX","tipoparam":"int","descripcion":"Nombre del archivo de texto que almacena las operaciones relacionadas al cambio de individuos, este archivo se generará en el directorio de -FNEXTG."}]},"nivelUno":null,"nivelDos":null,"nivelTres":{"descCasoComplejo":[{"descripcion":"-CONFIG CONFIG.txt\n\nLa línea anterior especificaría los parámetros debajo:\n\n-FWORK     @WORK_PATH@\\WORK\n-FACTG     ACTGEN_3_\n-FNEXTG    NEXTGEN_4_\n-FPOP      POPULATION\n-FSELECT   PARENTS.txt                     \n-NI        100\n-NELITE    3\n-REPORTCX  RepoOpCX_4.txt\n\nEl componente recuperará una lista de padres (determinados del\narchivo PARENTS.txt), los cuales están ubicados en el directorio \nPOPULATION del directorio ACTGEN_3_ para aplicar la cruza por \nciclos y generará 97 descendientes (Número obtenido de la diferencia\nentre -NI -NELITE. Los cambios de genes en los 97 descendientes \nserán de acuerdo a una probabilidad del 70%, en este caso, este \nvalor fue especificado por defecto.\nPor último, los descendientes generados son almacenados en el\nsubdirectorio POPULATION ubicado en el directorio NEXTGEN_4_, además\nel archivo de reporte RepoOpCX_4.txt se almacenará en el directorio\nWORK el cual mustra a detalle lo realizado de la cruza en\nla población a partir de cada generación.\n\nUso de @WORK_PATH@\n\nEl componente genera la carpeta WORK a partir de la especificación de \nla etiqueta @WORK_PATH@, donde se determinará por automático el directorio \ndonde se esté ejecutando este componente. Ejemplo. Si se ejecuta este \ncomponente en el directorio C:\\GENGEN\\test1, entonces la etiqueta \n@WORK_PATH@ será sustituida por C:\\GENGEN\\test1."},{"descripcion":"-CONFIG CONFIG.txt\n\nLa línea anterior especificaría los parámetros debajo:\n\n-FWORK     @WORK_PATH@\\WORK\n-FACTG     ACTGEN_3_\n-FNEXTG    NEXTGEN_4_\n-FPOP      POPULATION\n-FSELECT   PARENTS.txt                     \n-NI        100\n-NELITE    3                  \n-XPROB  90\n-REPORTCX  RepoOpCX_5.txt\n\nEl componente recuperará una lista de padres (determinados del\narchivo PARENTS.txt), los cuales están ubicados en el directorio \nPOPULATION del directorio ACTGEN_3_ para aplicar la cruza por \nciclos y generará 97 descendientes (Número obtenido de la diferencia\nentre -NI -NELITE. Los cambios de genes en los 97 descendientes \nserán de acuerdo a una probabilidad del 90%.\nPor último, los descendientes generados son almacenados en el\nsubdirectorio POPULATION ubicado en el directorio NEXTGEN_4_, además\nel archivo de reporte RepoOpCX_5.txt se almacenará en el directorio\nWORK el cual mustra a detalle lo realizado de la cruza en\nla población a partir de cada generación.\n\nUso de @WORK_PATH@\n\nEl componente genera la carpeta WORK a partir de la especificación de \nla etiqueta @WORK_PATH@, donde se determinará por automático el directorio \ndonde se esté ejecutando este componente. Ejemplo. Si se ejecuta este \ncomponente en el directorio C:\\GENGEN\\test1, entonces la etiqueta \n@WORK_PATH@ será sustituida por C:\\GENGEN\\test1."},{"descripcion":"-CONFIG CONFIG.txt\n\nLa línea anterior especificaría los parámetros debajo:\n\n-FWORK     @WORK_PATH@\\WORK\n-FACTG     ACTGEN_3_\n-FNEXTG    NEXTGEN_4_\n-FPOP      POPULATION\n-FSELECT   PARENTS.txt\n-NI        10\n-NELITE    3\n-XPROB\t   100\n-REPORTCX  RepoOpCX_1.txt\n\n\nEl componente recuperará una lista de padres (determinados del\narchivo PARENTS.txt), los cuales están ubicados en el directorio \nPOPULATION del directorio ACTGEN_3_ para aplicar la cruza por \nciclos y generará 7 descendientes (Número obtenido de la diferencia\nentre -NI -NELITE). Los cambios de genes en los 7 descendientes serán de \nacuerdo a una probabilidad del 100%.\nPor último, los descendientes generados son almacenados en el\nsubdirectorio POPULATION ubicado en el directorio NEXTGEN_4_, además\nel archivo de reporte RepoOpCX_1.txt se almacenará en el directorio\nWORK el cual mustra a detalle lo realizado de la cruza en\nla población a partir de cada generación.\n\nUso de @WORK_PATH@\n\nEl componente genera la carpeta WORK a partir de la especificación de \nla etiqueta @WORK_PATH@, donde se determinará por automático el directorio \ndonde se esté ejecutando este componente. Ejemplo. Si se ejecuta este \ncomponente en el directorio C:\\GENGEN\\test1, entonces la etiqueta \n@WORK_PATH@ será sustituida por C:\\GENGEN\\test1."},{"descripcion":"-CONFIG CONFIG.txt\n\nLa línea anterior especificaría los parámetros debajo:\n\n-FWORK     @WORK_PATH@\\WORK\n-FACTG     ACTGEN_3_\n-FNEXTG    NEXTGEN_4_\n-FPOP      POPULATION\n-FSELECT   PARENTS.txt     \n-NI        100\n-NELITE    3 \n-XPROB  80\n-REPORTCX  RepoOpCX_2.txt\n\nEl componente recuperará una lista de padres (determinados del\narchivo PARENTS.txt), los cuales están ubicados en el directorio \nPOPULATION del directorio ACTGEN_3_ para aplicar la cruza por \nciclos y generará 97 descendientes (Número obtenido de la diferencia\nentre -NI -NELITE. Los cambios de genes en los 97 descendientes \nserán de acuerdo a una probabilidad del 80%.\nPor último, los descendientes generados son almacenados en el\nsubdirectorio POPULATION ubicado en el directorio NEXTGEN_4_, además\nel archivo de reporte RepoOpCX_2.txt se almacenará en el directorio\nWORK el cual mustra a detalle lo realizado de la cruza en\nla población a partir de cada generación.\n\nUso de @WORK_PATH@\n\nEl componente genera la carpeta WORK a partir de la especificación de \nla etiqueta @WORK_PATH@, donde se determinará por automático el directorio \ndonde se esté ejecutando este componente. Ejemplo. Si se ejecuta este \ncomponente en el directorio C:\\GENGEN\\test1, entonces la etiqueta \n@WORK_PATH@ será sustituida por C:\\GENGEN\\test1."},{"descripcion":"-CONFIG CONFIG.txt\n\nLa línea anterior especificaría los parámetros debajo:\n\n-FWORK     @WORK_PATH@\\WORK\n-FACTG     ACTGEN_3_\n-FNEXTG    NEXTGEN_4_\n-FPOP      POPULATION\n-FSELECT   PARENTS.txt                     \n-NI        100\n-NELITE    1                  \n-XPROB  20\n-REPORTCX  RepoOpCX_3.txt\n\nEl componente recuperará una lista de padres (determinados del\narchivo PARENTS.txt), los cuales están ubicados en el directorio \nPOPULATION del directorio ACTGEN_3_ para aplicar la cruza por \nciclos y generará 97 descendientes (Número obtenido de la diferencia\nentre -NI -NELITE. Los cambios de genes en los 99 descendientes \nserán de acuerdo a una probabilidad del 20%.\nPor último, los descendientes generados son almacenados en el\nsubdirectorio POPULATION ubicado en el directorio NEXTGEN_4_, además\nel archivo de reporte RepoOpCX_3.txt se almacenará en el directorio\nWORK el cual mustra a detalle lo realizado de la cruza en\nla población a partir de cada generación.\n\nUso de @WORK_PATH@\n\nEl componente genera la carpeta WORK a partir de la especificación de \nla etiqueta @WORK_PATH@, donde se determinará por automático el directorio \ndonde se esté ejecutando este componente. Ejemplo. Si se ejecuta este \ncomponente en el directorio C:\\GENGEN\\test1, entonces la etiqueta \n@WORK_PATH@ será sustituida por C:\\GENGEN\\test1."}]},"nivelCuatro":null,"nivelCinco":null,"nivelSeis":null,"nivelSiete":null,"nivelOcho":{"exposicion":[{"referencia":"(Oliver, Smith & Holland, 2018) - Oliver, I. M., Smith, D., & Holland, \n\tJ. R. (1987). Study of permutation crossover operators on the traveling \n\tsalesman problem. In Genetic algorithms and their applications: \n\tproceedings of the second International Conference on Genetic Algorithms: \n\tJuly 28-31, 1987 at the Massachusetts Institute of Technology, Cambridge, \n\tMA. Hillsdale, NJ: L. Erlhaum Associates, 1987.","funcion":"N/A","url":"N/A"}]}}
+{
+  "nivelCero":{
+    "claveComponente":"1473__OpXCycle",
+    "nombreComponente":"Cycle crossover operator",
+    "tipo":"Orientado al servicio",
+    "clasACM":"Software and its engineering",
+    "autores":[
+      {
+        "nombreAutor":"Ing. Jonathan Rojas Simón",
+        "correoAutor":"IDS_Jonathan_Rojas@hotmail.com",
+        "aliasGitlab":"IDS_Jonathan_Rojas"
+      },
+      {
+        "nombreAutor":"Dr. René Arnulfo García Hernández",
+        "correoAutor":"renearnulfo@hotmail.com",
+        "aliasGitlab":"renearnulfo"
+      }
+    ],
+    "descProblema":"El operador de cruza por ciclos realiza el intercambio genético\nde un conjunto de individuos mediante el argoritmo de cruza por\nciclos (CX). Esta cruza es realizada mediante una probabilidad \n(-XPROB) determinada por el usuario (opcional). El operador de\ncruza por ciclos es una técnica de cruza propuesta por Oliver,\nSmith y Holland en 1987 (Oliver, Smith & Holland, 1987).\n\nNOTA: La probabilidad de cruza permite generar cruzas entre \n\t  varios pares de individuos padres\n\nBásicamente el operador realiza el intercambio genético mediante \ntres sencillos pasos, los cuales son:\n\n1. Determinar un ciclo mediante las posiciones de los valores\n   de los padres.\n2. Copiar los valores que están en el ciclo del padre 1 para \n   generar el primer descendiente.\n3. Rellenar los genes restantes del descendiente con los valores\n   no comprendidos del ciclo del padre 2\n4. Repetir los pasos 1, 2 y 3 tomando como referencia el padre 2\n\nPara más detalles sobre la ejecución de este componente y \nconsultar sobre el intercambio genético de este operador se\nrecomienda visualizar el siguiente video: \n\nhttps://youtu.be/pWAK_CxxO0M",
+    "reqFuncionales":[
+      "N/A"
+    ],
+    "reqNoFuncionales":[
+      "N/A"
+    ],
+    "aportacion":"N/A",
+    "similitud":"N/A",
+    "sintaxis":[
+      {
+        "param":"CONFIG",
+        "tipoparam":"rout",
+        "descripcion":"Ruta y nombre del archivo de texto donde se describen los parámetros descritos debajo"
+      },
+      {
+        "param":"FWORK",
+        "tipoparam":"rout",
+        "descripcion":"Directorio de trabajo por el cual se realizará el enlace con las subcarpetas contenidas en el."
+      },
+      {
+        "param":"FACTG",
+        "tipoparam":"rout",
+        "descripcion":"Nombre del directorio que contiene los individuos de la actual generación"
+      },{
+        "param":"FNEXTG",
+        "tipoparam":"rout",
+        "descripcion":"Nombre del directorio que contiene los individuos de la actual generación"
+      },
+      {
+        "param":"FPOP",
+        "tipoparam":"rout",
+        "descripcion":"Nombre del directorio donde recupera (-FACTG) y almacena (-FNEXTG) la información genética de la población modificada."
+      },
+      {
+        "param":"FSELECT",
+        "tipoparam":"rout",
+        "descripcion":"Archivo de texto que enlista todos los individuos padres"
+      },
+      {
+        "param":"NI",
+        "tipoparam":"int",
+        "descripcion":"Número de individuos de cada generación"
+      },
+      {
+        "param":"NELITE",
+        "tipoparam":"int",
+        "descripcion":"Número de individuos elite de cada generación"
+      },
+      {
+        "param":"XPROB",
+        "tipoparam":"int",
+        "descripcion":"Número entero que determina la probabilidad de cruza (en un rango de 0 a 100), si esta etiqueta no se especifica "
+      },
+      {
+        "param":"REPORTCX",
+        "tipoparam":"rout",
+        "descripcion":"Nombre del archivo de texto que almacena las operaciones relacionadas al cambio de individuos, este archivo se generará en el directorio de -FNEXTG."
+      }
+    ]
+  },
+  "nivelUno":null,
+  "nivelDos":null,
+  "nivelTres":{
+    "descCasoComplejo":[
+      {
+        "descripcion":"-CONFIG CONFIG.txt\n\nLa línea anterior especificaría los parámetros debajo:\n\n-FWORK     @WORK_PATH@\\WORK\n-FACTG     ACTGEN_3_\n-FNEXTG    NEXTGEN_4_\n-FPOP      POPULATION\n-FSELECT   PARENTS.txt                     \n-NI        100\n-NELITE    3\n-REPORTCX  RepoOpCX_4.txt\n\nEl componente recuperará una lista de padres (determinados del\narchivo PARENTS.txt), los cuales están ubicados en el directorio \nPOPULATION del directorio ACTGEN_3_ para aplicar la cruza por \nciclos y generará 97 descendientes (Número obtenido de la diferencia\nentre -NI -NELITE. Los cambios de genes en los 97 descendientes \nserán de acuerdo a una probabilidad del 70%, en este caso, este \nvalor fue especificado por defecto.\nPor último, los descendientes generados son almacenados en el\nsubdirectorio POPULATION ubicado en el directorio NEXTGEN_4_, además\nel archivo de reporte RepoOpCX_4.txt se almacenará en el directorio\nWORK el cual mustra a detalle lo realizado de la cruza en\nla población a partir de cada generación.\n\nUso de @WORK_PATH@\n\nEl componente genera la carpeta WORK a partir de la especificación de \nla etiqueta @WORK_PATH@, donde se determinará por automático el directorio \ndonde se esté ejecutando este componente. Ejemplo. Si se ejecuta este \ncomponente en el directorio C:\\GENGEN\\test1, entonces la etiqueta \n@WORK_PATH@ será sustituida por C:\\GENGEN\\test1."
+      },
+      {
+        "descripcion":"-CONFIG CONFIG.txt\n\nLa línea anterior especificaría los parámetros debajo:\n\n-FWORK     @WORK_PATH@\\WORK\n-FACTG     ACTGEN_3_\n-FNEXTG    NEXTGEN_4_\n-FPOP      POPULATION\n-FSELECT   PARENTS.txt                     \n-NI        100\n-NELITE    3                  \n-XPROB  90\n-REPORTCX  RepoOpCX_5.txt\n\nEl componente recuperará una lista de padres (determinados del\narchivo PARENTS.txt), los cuales están ubicados en el directorio \nPOPULATION del directorio ACTGEN_3_ para aplicar la cruza por \nciclos y generará 97 descendientes (Número obtenido de la diferencia\nentre -NI -NELITE. Los cambios de genes en los 97 descendientes \nserán de acuerdo a una probabilidad del 90%.\nPor último, los descendientes generados son almacenados en el\nsubdirectorio POPULATION ubicado en el directorio NEXTGEN_4_, además\nel archivo de reporte RepoOpCX_5.txt se almacenará en el directorio\nWORK el cual mustra a detalle lo realizado de la cruza en\nla población a partir de cada generación.\n\nUso de @WORK_PATH@\n\nEl componente genera la carpeta WORK a partir de la especificación de \nla etiqueta @WORK_PATH@, donde se determinará por automático el directorio \ndonde se esté ejecutando este componente. Ejemplo. Si se ejecuta este \ncomponente en el directorio C:\\GENGEN\\test1, entonces la etiqueta \n@WORK_PATH@ será sustituida por C:\\GENGEN\\test1."
+      },
+      {
+        "descripcion":"-CONFIG CONFIG.txt\n\nLa línea anterior especificaría los parámetros debajo:\n\n-FWORK     @WORK_PATH@\\WORK\n-FACTG     ACTGEN_3_\n-FNEXTG    NEXTGEN_4_\n-FPOP      POPULATION\n-FSELECT   PARENTS.txt\n-NI        10\n-NELITE    3\n-XPROB\t   100\n-REPORTCX  RepoOpCX_1.txt\n\n\nEl componente recuperará una lista de padres (determinados del\narchivo PARENTS.txt), los cuales están ubicados en el directorio \nPOPULATION del directorio ACTGEN_3_ para aplicar la cruza por \nciclos y generará 7 descendientes (Número obtenido de la diferencia\nentre -NI -NELITE). Los cambios de genes en los 7 descendientes serán de \nacuerdo a una probabilidad del 100%.\nPor último, los descendientes generados son almacenados en el\nsubdirectorio POPULATION ubicado en el directorio NEXTGEN_4_, además\nel archivo de reporte RepoOpCX_1.txt se almacenará en el directorio\nWORK el cual mustra a detalle lo realizado de la cruza en\nla población a partir de cada generación.\n\nUso de @WORK_PATH@\n\nEl componente genera la carpeta WORK a partir de la especificación de \nla etiqueta @WORK_PATH@, donde se determinará por automático el directorio \ndonde se esté ejecutando este componente. Ejemplo. Si se ejecuta este \ncomponente en el directorio C:\\GENGEN\\test1, entonces la etiqueta \n@WORK_PATH@ será sustituida por C:\\GENGEN\\test1."
+      },
+      {
+        "descripcion":"-CONFIG CONFIG.txt\n\nLa línea anterior especificaría los parámetros debajo:\n\n-FWORK     @WORK_PATH@\\WORK\n-FACTG     ACTGEN_3_\n-FNEXTG    NEXTGEN_4_\n-FPOP      POPULATION\n-FSELECT   PARENTS.txt     \n-NI        100\n-NELITE    3 \n-XPROB  80\n-REPORTCX  RepoOpCX_2.txt\n\nEl componente recuperará una lista de padres (determinados del\narchivo PARENTS.txt), los cuales están ubicados en el directorio \nPOPULATION del directorio ACTGEN_3_ para aplicar la cruza por \nciclos y generará 97 descendientes (Número obtenido de la diferencia\nentre -NI -NELITE. Los cambios de genes en los 97 descendientes \nserán de acuerdo a una probabilidad del 80%.\nPor último, los descendientes generados son almacenados en el\nsubdirectorio POPULATION ubicado en el directorio NEXTGEN_4_, además\nel archivo de reporte RepoOpCX_2.txt se almacenará en el directorio\nWORK el cual mustra a detalle lo realizado de la cruza en\nla población a partir de cada generación.\n\nUso de @WORK_PATH@\n\nEl componente genera la carpeta WORK a partir de la especificación de \nla etiqueta @WORK_PATH@, donde se determinará por automático el directorio \ndonde se esté ejecutando este componente. Ejemplo. Si se ejecuta este \ncomponente en el directorio C:\\GENGEN\\test1, entonces la etiqueta \n@WORK_PATH@ será sustituida por C:\\GENGEN\\test1."
+      },
+      {
+        "descripcion":"-CONFIG CONFIG.txt\n\nLa línea anterior especificaría los parámetros debajo:\n\n-FWORK     @WORK_PATH@\\WORK\n-FACTG     ACTGEN_3_\n-FNEXTG    NEXTGEN_4_\n-FPOP      POPULATION\n-FSELECT   PARENTS.txt                     \n-NI        100\n-NELITE    1                  \n-XPROB  20\n-REPORTCX  RepoOpCX_3.txt\n\nEl componente recuperará una lista de padres (determinados del\narchivo PARENTS.txt), los cuales están ubicados en el directorio \nPOPULATION del directorio ACTGEN_3_ para aplicar la cruza por \nciclos y generará 97 descendientes (Número obtenido de la diferencia\nentre -NI -NELITE. Los cambios de genes en los 99 descendientes \nserán de acuerdo a una probabilidad del 20%.\nPor último, los descendientes generados son almacenados en el\nsubdirectorio POPULATION ubicado en el directorio NEXTGEN_4_, además\nel archivo de reporte RepoOpCX_3.txt se almacenará en el directorio\nWORK el cual mustra a detalle lo realizado de la cruza en\nla población a partir de cada generación.\n\nUso de @WORK_PATH@\n\nEl componente genera la carpeta WORK a partir de la especificación de \nla etiqueta @WORK_PATH@, donde se determinará por automático el directorio \ndonde se esté ejecutando este componente. Ejemplo. Si se ejecuta este \ncomponente en el directorio C:\\GENGEN\\test1, entonces la etiqueta \n@WORK_PATH@ será sustituida por C:\\GENGEN\\test1."
+      }
+    ]
+  },
+  "nivelCuatro":null,
+  "nivelCinco":null,
+  "nivelSeis":null,
+  "nivelSiete":null,
+  "nivelOcho":{
+    "exposicion":[
+      {
+        "referencia":"(Oliver, Smith & Holland, 2018) - Oliver, I. M., Smith, D., & Holland, \n\tJ. R. (1987). Study of permutation crossover operators on the traveling \n\tsalesman problem. In Genetic algorithms and their applications: \n\tproceedings of the second International Conference on Genetic Algorithms: \n\tJuly 28-31, 1987 at the Massachusetts Institute of Technology, Cambridge, \n\tMA. Hillsdale, NJ: L. Erlhaum Associates, 1987.",
+        "funcion":"N/A",
+        "url":"N/A"
+      }
+    ]
+  }
+}

@@ -81,7 +81,7 @@ socket.on('config-files-success', (payload) => {
        setTimeout(() => {
            document.getElementById("genAnimation").style.display = "none";
            document.getElementById("genWik").style.display = "none";
-           window.location.replace("http://localhost:8080/gui");
+           window.location.replace("http://localhost:8080/config");
        }, 1000)
    }
 })
