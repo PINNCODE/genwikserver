@@ -93,6 +93,7 @@ const parseInputs = (uiFrom) => {
 }
 
 const createInput = (formName, inputData) => {
+    console.log(inputData.tipoG)
     let inputField = '';
     switch (inputData.tipoG){
         case 'text':
@@ -116,6 +117,16 @@ const createInput = (formName, inputData) => {
                 <div class="form-group col-12 mt-2">
                     <label for="exampleFormControlInput1">${inputData.param}</label>
                     <input type="${inputData.tipoG}" class="form-control" id="${inputData.param}_${formName}" placeholder="${inputData.descripcion}" pattern="${inputData.expresionRegular}">
+                </div>`
+            fs.writeFileSync(`${hbsDir}/partials/${formName}_${inputData.param}_input.hbs`,inputField)
+            break;
+        case 'checkbox':
+            inputField = `
+                <div class="form-group form-check col-12 mt-2">
+                    <input class="form-check-input" id="${inputData.param}_${formName}" type="${inputData.tipoG}" value="${inputData.valorDefecto}">
+                    <label class="form-check-label" >
+                        ${inputData.param}
+                    </label>
                 </div>`
             fs.writeFileSync(`${hbsDir}/partials/${formName}_${inputData.param}_input.hbs`,inputField)
             break;
