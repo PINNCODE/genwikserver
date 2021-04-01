@@ -16,29 +16,29 @@ Todos los padres fueron validados
 ------------------------------------------------------------
 PA -> C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\POPULATION\IND11GEN.bin
 PB -> C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\POPULATION\IND12GEN.bin
-PA -> PB Punto de inicio del ciclo -> 6
-PB -> PA Punto de inicio del ciclo -> 43
+PA -> PB Punto de inicio del ciclo -> 48
+PB -> PA Punto de inicio del ciclo -> 38
 DA -> IND21GEN.bin
 DB -> IND22GEN.bin
 ------------------------------------------------------------
 PA -> C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\POPULATION\IND13GEN.bin
 PB -> C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\POPULATION\IND14GEN.bin
-PA -> PB Punto de inicio del ciclo -> 33
-PB -> PA Punto de inicio del ciclo -> 37
+PA -> PB Punto de inicio del ciclo -> 30
+PB -> PA Punto de inicio del ciclo -> 38
 DA -> IND23GEN.bin
 DB -> IND24GEN.bin
 ------------------------------------------------------------
 PA -> C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\POPULATION\IND15GEN.bin
 PB -> C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\POPULATION\IND16GEN.bin
-PA -> PB Punto de inicio del ciclo -> 23
-PB -> PA Punto de inicio del ciclo -> 40
+PA -> PB Punto de inicio del ciclo -> 49
+PB -> PA Punto de inicio del ciclo -> 24
 DA -> IND25GEN.bin
 DB -> IND26GEN.bin
 ------------------------------------------------------------
 PA -> C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\POPULATION\IND17GEN.bin
 PB -> C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\POPULATION\IND18GEN.bin
-PA -> PB Punto de inicio del ciclo -> 33
-PB -> PA Punto de inicio del ciclo -> 33
+PA -> PB Punto de inicio del ciclo -> 44
+PB -> PA Punto de inicio del ciclo -> 45
 DA -> IND27GEN.bin
 ------------------------------------------------------------
 

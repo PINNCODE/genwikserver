@@ -12,7 +12,9 @@ class Server {
         this.port   = process.env.PORT;
         this.server = require('http').createServer( this.app );
         this.io     = require('socket.io')( this.server );
-        this.app.set('view engine', 'hbs');hbs.registerPartials(path.join(__dirname, "../", "/views/partials"));
+        this.app.set('views', path.join(__dirname,'../views'));
+        this.app.set('view engine', 'hbs');
+        hbs.registerPartials(path.join(__dirname, "../", "/views/partials"));
 
         this.paths = {};
 
@@ -29,6 +31,11 @@ class Server {
     middlewares() {
         // Directorio Público
         this.app.use( express.static('public') );
+        this.app.use( express.static('../public') );
+        this.app.use( express.static('./../public') );
+        this.app.use( express.static('./../../public') );
+        this.app.use( express.static('./../../../public') );
+        this.app.use('/js', express.static(__dirname + '/public'))
     }
 
     routes() {
@@ -57,7 +64,7 @@ class Server {
 
     listen() {
         this.server.listen( this.port, () => {
-            console.log('' +
+            console.log(
                 'Servidor corriendo en puerto'.brightGreen,
                 colors.underline(`http://localhost:${this.port}/`)
             );
@@ -65,8 +72,5 @@ class Server {
     }
 
 }
-
-
-
 
 module.exports = Server;

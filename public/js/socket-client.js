@@ -76,7 +76,7 @@ socket.on('disconnect', () => {
 });
 
 socket.on('config-files-success', (payload) => {
-    console.log(payload)
+    console.log('config-files-success',payload)
    if (payload){
        setTimeout(() => {
            document.getElementById("genAnimation").style.display = "none";

@@ -17,6 +17,7 @@ const socketController = (socket) => {
     });
 
     socket.on('loadFiles', ( payload ) => {
+        console.log('Cargando archivos...');
         resetDir(dir).then(
             () => resetDir(`${hbsDir}/partials`).then( () => getCarnetData(payload , socket))
         )

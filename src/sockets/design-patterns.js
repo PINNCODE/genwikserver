@@ -12,6 +12,7 @@ let guiData = {
 };
 
 const getCarnetData = ( carnetData, socket ) => {
+    console.log('Leyendo carnets')
     carnetData.forEach(
         (carnet, i) => {
             guiData.nombre = carnet.data.nivelCero.claveComponente;
@@ -21,6 +22,7 @@ const getCarnetData = ( carnetData, socket ) => {
 
             guiConfigFile(guiData)
             if (carnetData.length - 1 === i){
+                console.log('Archivo de configuración creado')
                 socket.emit('config-files-success', true );
             }
         }
@@ -28,6 +30,7 @@ const getCarnetData = ( carnetData, socket ) => {
 }
 
 const processInputs =  (inputs) => {
+    console.log('processInputs')
    let newInputs = inputs.map( input => {
        switch (input.tipoparam){
            case 'int':
