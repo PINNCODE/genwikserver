@@ -6,4 +6,4 @@
 -NI 10
 -NELITE 3
 -XPROB 100
--REPORTCX  genwik4.txt
+-REPORTCX genwik.txt

@@ -1,7 +1,7 @@
 const { getCarnetData } = require('./design-patterns')
 const colors = require('colors')
 const { resetDir } = require("./file-system");
-const { readUIElements, createUIElements, writeFileGUI, readFileGUi, writeConfigFile } = require("./file-system");
+const { readUIElements, createUIElements, writeFileGUI, readFileGUi, writeConfigFile, createResult } = require("./file-system");
 const dir = process.env.CONFIG_PATH;
 const hbsDir = process.env.HBS_PATH;
 
@@ -37,8 +37,16 @@ const socketController = (socket) => {
         socket.emit('gui-run', data)
     })
 
+    // work in
     socket.on('params', (payload) => {
-        writeConfigFile(payload)
+        writeConfigFile(payload, socket)
+    })
+
+    // work in
+    socket.on('loadResult', (payload) => {
+        console.log('Mostrando resultados')
+        socket.emit('resultReady')
+        createResult();
     })
 
 }

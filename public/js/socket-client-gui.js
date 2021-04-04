@@ -1,6 +1,7 @@
 
 const socket = io();
 let filesData;
+document.getElementById("genAnimation").style.display = "none";
 
 
 socket.on('connect', () => {
@@ -16,14 +17,16 @@ socket.on('gui-run', (payload) => {
     filesData = payload;
 })
 
+socket.on('component-exec', (payload) => {
+    window.location.replace("http://localhost:8080/result");
+})
+
 const executeComponent = () => {
-    console.log(filesData)
+    document.getElementById("genAnimation").style.display = "flex";
+    document.getElementById("genWik").style.display = "none";
     filesData.forEach( data => {
-        console.log(data)
         let params = data.elementosGraficos.entradas.map( inputs => {
-            console.log(`${inputs.param}_${data.nombre}`)
             let valueInput = document.getElementById(`${inputs.param}_${data.nombre}`).value;
-            console.log(valueInput);
             return `-${inputs.param} ${valueInput}`;
         })
         socket.emit('params', params);

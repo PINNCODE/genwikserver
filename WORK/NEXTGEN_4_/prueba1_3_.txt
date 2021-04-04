@@ -1,0 +1,45 @@
+*****************************  REPORTE  **********************************
+Ruta de trabajo (-FWORK): C:\Users\laloa\Documents\dev\genwikserver\WORK
+Numero de individuos generados (-NI: 10) - (-NELITE: 3) = 7
+DETALLE
+Operador CX
+Generación -> 3
+-XPROB: 100
+Poblacion de padres: C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\POPULATION
+Prefijo (-PRE) -> IND
+Infijo (-INF) -> 20
+Posfijo (-POS) -> GEN
+Indices de padres -> C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\PARENTS.txt
+Validacion de padres
+Suma de valores -> 6225.0
+Todos los padres fueron validados
+------------------------------------------------------------
+PA -> C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\POPULATION\IND11GEN.bin
+PB -> C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\POPULATION\IND12GEN.bin
+PA -> PB Punto de inicio del ciclo -> 7
+PB -> PA Punto de inicio del ciclo -> 18
+DA -> IND21GEN.bin
+DB -> IND22GEN.bin
+------------------------------------------------------------
+PA -> C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\POPULATION\IND13GEN.bin
+PB -> C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\POPULATION\IND14GEN.bin
+PA -> PB Punto de inicio del ciclo -> 36
+PB -> PA Punto de inicio del ciclo -> 46
+DA -> IND23GEN.bin
+DB -> IND24GEN.bin
+------------------------------------------------------------
+PA -> C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\POPULATION\IND15GEN.bin
+PB -> C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\POPULATION\IND16GEN.bin
+PA -> PB Punto de inicio del ciclo -> 44
+PB -> PA Punto de inicio del ciclo -> 16
+DA -> IND25GEN.bin
+DB -> IND26GEN.bin
+------------------------------------------------------------
+PA -> C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\POPULATION\IND17GEN.bin
+PB -> C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\POPULATION\IND18GEN.bin
+PA -> PB Punto de inicio del ciclo -> 7
+PB -> PA Punto de inicio del ciclo -> 12
+DA -> IND27GEN.bin
+------------------------------------------------------------
+
+***************************************************************************

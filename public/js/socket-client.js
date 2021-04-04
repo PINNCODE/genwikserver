@@ -1,4 +1,4 @@
-
+console.log('Hola ref js')
 // Referencias del HTML
 const serverStatus  = document.querySelector('#serverStatus');
 document.getElementById("genAnimation").style.display = "none";

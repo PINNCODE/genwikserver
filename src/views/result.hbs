@@ -15,6 +15,42 @@
 </head>
 <body class="container">
 
+<div id="genAnimation" class="fade-in body-flex">
+    <div class="dna-loader">
+        <div class="chain" style="--i:1">
+            <div class="line"></div>
+            <div class="ball"></div>
+        </div>
+        <div class="chain" style="--i:2">
+            <div class="line"></div>
+            <div class="ball"></div>
+        </div>
+        <div class="chain" style="--i:3">
+            <div class="line"></div>
+            <div class="ball"></div>
+        </div>
+        <div class="chain" style="--i:4">
+            <div class="line"></div>
+            <div class="ball"></div>
+        </div>
+        <div class="chain" style="--i:5">
+            <div class="line"></div>
+            <div class="ball"></div>
+        </div>
+        <div class="chain" style="--i:6">
+            <div class="line"></div>
+            <div class="ball"></div>
+        </div>
+        <div class="chain" style="--i:7">
+            <div class="line"></div>
+            <div class="ball"></div>
+        </div>
+        <div class="chain" style="--i:8">
+            <div class="line"></div>
+            <div class="ball"></div>
+        </div>
+    </div>
+</div>
 
 <div class="row mt-5 mb-5 fade-in" id="genWik">
 
@@ -68,7 +104,8 @@
             </tbody>
         </table>
         <div class="d-grid gap-2">
-            <button class="btn btn-primary" type="button">Descargar resultado</button>
+            <button class="btn btn-secondary" type="button">Volver a ejecutar</button>
+            <button class="btn btn-primary" type="button">Cambiar parametros</button>
         </div>
     </div>
 
@@ -76,8 +113,7 @@
         <h1>Resultado</h1>
         <hr>
         <div class="form-floating">
-            <textarea class="form-control" id="floatingTextarea2" style="height: 100px" value="fik"></textarea>
-            <label for="floatingTextarea2">
+            <textarea class="form-control" id="floatingTextarea2" style="height: 55vh" value="fik">
                 *****************************  REPORTE  **********************************
                 Ruta de trabajo (-FWORK): C:\Users\laloa\Documents\dev\genwikserver\WORK
                 Numero de individuos generados (-NI: 10) - (-NELITE: 3) = 7
@@ -123,16 +159,17 @@
                 ------------------------------------------------------------
 
                 ***************************************************************************
-
+            </textarea>
+            <label for="floatingTextarea2">
+                Resultados
             </label>
         </div>
     </div>
 
 </div>
 
-
 <script src="./socket.io/socket.io.js"></script>
-<script src="../js/socket-client.js"></script>
+<script src="../js/socket-client-result.js"></script>
 
 </body>
 </html>

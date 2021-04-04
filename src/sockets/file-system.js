@@ -134,7 +134,7 @@ const createInput = (formName, inputData) => {
     switch (inputData.tipoG){
         case 'text':
             inputField = `
-                <div class="form-group col-12 mt-2">
+                <div class="form-group col-6 mt-2">
                     <label for="exampleFormControlInput1">${inputData.param}</label>
                     <input type="${inputData.tipoG}" class="form-control" id="${inputData.param}_${formName}" placeholder="${inputData.descripcion}">
                 </div>`
@@ -142,7 +142,7 @@ const createInput = (formName, inputData) => {
             break;
         case 'number':
             inputField = `
-                <div class="form-group col-12 mt-2">
+                <div class="form-group col-6 mt-2">
                     <label for="exampleFormControlInput1">${inputData.param}</label>
                     <input type="${inputData.tipoG}" class="form-control" id="${inputData.param}_${formName}" placeholder="${inputData.descripcion}" step="${inputData.decimales}">
                 </div>`
@@ -150,7 +150,7 @@ const createInput = (formName, inputData) => {
             break;
         case 'text':
             inputField = `
-                <div class="form-group col-12 mt-2">
+                <div class="form-group col-6 mt-2">
                     <label for="exampleFormControlInput1">${inputData.param}</label>
                     <input type="${inputData.tipoG}" class="form-control" id="${inputData.param}_${formName}" placeholder="${inputData.descripcion}" pattern="${inputData.expresionRegular}">
                 </div>`
@@ -158,7 +158,7 @@ const createInput = (formName, inputData) => {
             break;
         case 'checkbox':
             inputField = `
-                <div class="form-group form-check col-12 mt-2">
+                <div class="form-group form-check col-6 mt-2">
                     <input class="form-check-input" id="${inputData.param}_${formName}" type="${inputData.tipoG}" value="${inputData.valorDefecto}">
                     <label class="form-check-label" >
                         ${inputData.param}
@@ -185,6 +185,13 @@ const createGUI = async () => {
     })
 };
 
+const createComand = () => {
+    return fs.readdirSync(`./components`,  ( err, files) => {
+        if (err) throw err
+        return files;
+    })
+};
+
 const reWriteGUI = (partials) =>{
     let partialsBody = ''
     partials.forEach( partial => partialsBody += `{{> ${partial} }}\n`);
@@ -196,25 +203,39 @@ const reWriteGUI = (partials) =>{
     hbs.registerPartials(path.join(__dirname, "../", "/views/partials"));
 }
 
-const writeConfigFile = (data) => {
+const writeConfigFile = (data, socket) => {
+    let comp = createComand();
+    comp = comp[0]
     let parseData = '';
+
     data.forEach(data => {
         if(data.param != 'CONFIG') return parseData += `${data}\n`
-    })
-    console.log(parseData)
+    });
+
     fs.writeFileSync(`CONFIG.txt`, parseData, (err) => {
         if (err) console.log(`Error al escribir el archivo componentGUI.hbs: `, err)
-    })
+    });
 
-    const { exec } = require('child_process');
-    exec('java -jar ./OpCX-1.0.jar -CONFIG CONFIG.txt', (err, stdout, stderr) => {
+    const { exec} = require('child_process');
+    exec(`java -jar ./components/${comp} -CONFIG CONFIG.txt`, (err, stdout, stderr) => {
         if (err) {
-            console.error(err)
+            console.error('->', err)
         } else {
+            console.log(`Se ejecuto el componente ${comp}`)
             console.log(`stdout: ${stdout}`);
-            console.log(`stderr: ${stderr}`);
+            socket.emit('component-exec');
         }
     });
+}
+
+const createResult = () => {
+    let rawdata = fs.readFileSync('CONFIG.txt').toString()
+    let tokens = rawdata.split('\n')
+    let tokensSanitizer = tokens.map(  token =>
+        token.split(' ')
+    );
+    tokensSanitizer = tokensSanitizer.filter(item => item != '');
+    console.log(tokensSanitizer)
 }
 
 
@@ -225,5 +246,7 @@ module.exports = {
     createUIElements,
     writeFileGUI,
     readFileGUi,
-    writeConfigFile
+    writeConfigFile,
+    createComand,
+    createResult
 };
