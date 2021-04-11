@@ -1,6 +1,7 @@
 
 const socket = io();
 let filesData;
+let params;
 document.getElementById("genAnimation").style.display = "none";
 
 
@@ -14,6 +15,7 @@ socket.on('disconnect', () => {
 });
 
 socket.on('gui-run', (payload) => {
+    console.log(payload)
     filesData = payload;
 })
 
@@ -24,12 +26,14 @@ socket.on('component-exec', (payload) => {
 const executeComponent = () => {
     document.getElementById("genAnimation").style.display = "flex";
     document.getElementById("genWik").style.display = "none";
-    filesData.forEach( data => {
+    filesData.order.forEach( data => {
         let params = data.elementosGraficos.entradas.map( inputs => {
             let valueInput = document.getElementById(`${inputs.param}_${data.nombre}`).value;
             return `-${inputs.param} ${valueInput}`;
         })
-        socket.emit('params', params);
+        setTimeout(() => {
+            socket.emit('params', params);
+        }, 1000)
         //document.querySelector('')
     })
 }

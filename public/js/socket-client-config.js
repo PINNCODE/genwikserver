@@ -1,26 +1,28 @@
-console.log('hola ref js')
-// Referencias del HTML
-const serverStatus  = document.querySelector('#serverStatus');
-document.getElementById("genAnimation").style.display = "none";
-let filesData;
-
+/**
+ * Socket lib
+ */
 const socket = io();
 
-document.getElementById("btnGen").style.display = "none";
-
+/**
+ * Socket coneect
+ */
 socket.on('connect', () => {
-    //console.log('Conectado');
     serverStatus.innerHTML = 'Conectado';
     serverStatus.setAttribute('class', 'text-success');
     socket.emit('showInputs');
 });
 
+/**
+ * Socket disconnect
+ */
 socket.on('disconnect', () => {
-    // console.log('Desconectado del servidor');
     serverStatus.innerHTML = 'Desconectado';
     serverStatus.setAttribute('class', 'text-danger');
 });
 
+/**
+ * Socket on function
+ */
 socket.on('config-files-read', (payload) => {
     if (payload) {
         filesData = payload;
@@ -28,6 +30,9 @@ socket.on('config-files-read', (payload) => {
     }
 })
 
+/**
+ * Socket on function
+ */
 socket.on('gui-created', (payload) => {
     setTimeout(() => {
         document.getElementById("genAnimation").style.display = "none";
@@ -35,8 +40,24 @@ socket.on('gui-created', (payload) => {
     }, 1000)
 })
 
+// Referencias del HTML
+const serverStatus  = document.querySelector('#serverStatus');
+document.getElementById("outputDiv").style.display = "none";
+
+// DOM
+document.getElementById("genAnimation").style.display = "none";
+document.getElementById("btnGen").style.display = "none";
+
+// Variables
+let filesData;
+let multComponents = false;
+
 const addCard = (components) => {
+    console.log('addCard')
     components.forEach((item, index) => {
+        if (components.length){
+            this.multComponents = true;
+        }
         let card = document.createElement("div");
         card.setAttribute("class", "card mt-2");
         card.setAttribute('id',`${item.nombre}`)
@@ -105,6 +126,7 @@ element.addEventListener('mouseup', allowDrop)
 
 
 function allowDrop(){
+    console.log('allowDrop')
     setTimeout( () => {
         var itemOrder = $('#sortableContainer').sortable("toArray");
         itemOrder.forEach( ( item, index ) => {
@@ -113,7 +135,8 @@ function allowDrop(){
     }, 100);
 }
 
-const setOutPutOptions = () => {
+const  setOutPutOptions = () => {
+    console.log('allowDrop')
     $( "#sortableContainer" ).sortable({
         disabled: true
     });
@@ -124,7 +147,13 @@ const setOutPutOptions = () => {
         itemOrder.forEach( ( item, index ) => {
             if (index != 0){
                 getOutput( item, index, itemOrder);
-                setInputs(item, index, itemOrder)
+                setInputs(item, index, itemOrder);
+            }else{
+                document.getElementById("outputDiv").style.display = "block";
+                document.getElementById("outputLabel").innerText = `Salida del componente ${item}`;
+                document.getElementById("outputAlert").innerText = `De acuerdo al ultimo componente ${item} (respecto al orden de ejecución) ingresa la ruta de la salida que se mostrara en la GUI`;
+                const { nombre , tipo } = filesData[0].elementosGraficos.salida;
+                document.getElementById("outputInput").placeholder  = `${nombre} | ${tipo}`;
             }
         })
     }, 100);
@@ -133,7 +162,9 @@ const setOutPutOptions = () => {
 
 const getOutput = (item ,index, itemOrder) => {
     let inputs = filesData.filter(
-        data => itemOrder[index-1] === data.nombre
+        data => {
+            return itemOrder[index-1] === data.nombre
+        }
     );
 
     let formSelect = document.createElement('div');
@@ -163,6 +194,7 @@ const getOutput = (item ,index, itemOrder) => {
 }
 
 const setInputs = (item ,index, itemOrder) => {
+    console.log('setInputs')
     let inputs = filesData.filter(
         data => itemOrder[index] === data.nombre
     );
@@ -193,25 +225,27 @@ const setInputs = (item ,index, itemOrder) => {
 }
 
 const getParams = () => {
+    console.log('getParams')
     document.getElementById("genAnimation").style.display = "flex";
     document.getElementById("genWik").style.display = "none";
     document.getElementById("nav").style.display = "none";
     let newParams = [];
     var itemOrder = $('#sortableContainer').sortable("toArray");
     if (itemOrder.length) {
+        let valueInput = document.getElementById(`outputInput`).value;
+        console.log(valueInput)
         let params = filesData.filter( data => itemOrder[0] === data.nombre);
         newParams.push(params[0])
-        socket.emit('genUi', newParams);
+        console.log(params)
+        socket.emit('genUi', { order : newParams, output: valueInput});
     } else {
         itemOrder.forEach( ( item, index ) => {
-            console.log(item);
             if (index === 0){
                 let params = filesData.filter( data => item === data.nombre);
                 newParams.push(params[0])
             } else {
                 let input = document.getElementById(`${item}_select_input`).value;
                 let output = document.getElementById(`${item}_select_output`).value;
-                console.log(input, output)
                 let params = filesData.map( data => {
                     if (item === data.nombre){
                         console.log(data)

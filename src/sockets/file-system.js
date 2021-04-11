@@ -32,6 +32,7 @@ const writeFile = (data) => {
     Recibe la data de configuracion como parametro
  */
 const writeFileGUI = (data) => {
+    console.log(data)
     fs.writeFileSync(`./src/${hbsDir}/partials/guiConfig.json`, JSON.stringify(data), (err) => {
         if (err) console.log(`Error al escribir el archivo ${data.nombre}.json: `, err)
     })
@@ -78,11 +79,11 @@ const readUIElements = async (socket) => {
  */
 const createUIElements = (socket, data) => {
     console.log('Creando hbs'.green)
-    if (data.length === 1){
-        createHbs(data[0])
+    if (data.order.length === 1){
+        createHbs(data.order[0])
         createGUI().then( socket.emit('gui-created', data) );
     }else{
-        data.forEach( (component, index) => {
+        data.order.forEach( (component, index) => {
             createHbs(component);
             createGUI().then( socket.emit('gui-created', data) );
         })
@@ -228,14 +229,26 @@ const writeConfigFile = (data, socket) => {
     });
 }
 
-const createResult = () => {
+const createResult = (socket) => {
     let rawdata = fs.readFileSync('CONFIG.txt').toString()
     let tokens = rawdata.split('\n')
     let tokensSanitizer = tokens.map(  token =>
         token.split(' ')
     );
     tokensSanitizer = tokensSanitizer.filter(item => item != '');
-    console.log(tokensSanitizer)
+    let output = readJsonFile(`./src/${hbsDir}/partials/guiConfig.json`);
+    fs.readFile(output.output, 'utf8', function(err, data) {
+        if (err) throw err;
+        console.log('OK: ' + path);
+        setTimeout(() => {
+            socket.emit('resultReady', {
+                values: tokensSanitizer,
+                output: data
+            })
+        });
+    });
+
+
 }
 
 

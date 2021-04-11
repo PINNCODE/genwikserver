@@ -5,5 +5,5 @@
 -FSELECT PARENTS.txt
 -NI 10
 -NELITE 3
--XPROB 100
--REPORTCX genwik.txt
+-XPROB 50
+-REPORTCX reportcx.txt

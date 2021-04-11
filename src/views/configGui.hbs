@@ -95,6 +95,18 @@
         </div>
     </div>
 
+    <div class="col-md-12 mt-3" id="outputDiv">
+        <div id="outputAlert" class="alert alert-warning" role="alert">
+           De acuerdo al ultimo componente (respecto al orden de ejecución) ingresa la ruta de la salida que se mostrara en la GUI
+        </div>
+
+        <div class="form-group ">
+            <label id="outputLabel">Salida del componente</label>
+            <input id="outputInput" type="output" class="form-control" id="output" aria-describedby="output" placeholder="Ruta de la salida">
+            <small class="form-text text-danger">Es importante validar la ruta, sino se encuentra no se mostrara nada en la GUI</small>
+        </div>
+    </div>
+
     <div class="col-md-12 mt-3 text-end">
         <button id="btnConfirm" type="button" onclick="setOutPutOptions()" class="btn btn-primary">Confirmar secuencia</button>
         <button id="btnGen" type="button" onclick="getParams()" class="btn btn-primary">Generar interfaz</button>

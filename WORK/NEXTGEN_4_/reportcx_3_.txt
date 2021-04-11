@@ -1,0 +1,43 @@
+*****************************  REPORTE  **********************************
+Ruta de trabajo (-FWORK): C:\Users\laloa\Documents\dev\genwikserver\WORK
+Numero de individuos generados (-NI: 10) - (-NELITE: 3) = 7
+DETALLE
+Operador CX
+Generación -> 3
+-XPROB: 50
+Poblacion de padres: C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\POPULATION
+Prefijo (-PRE) -> IND
+Infijo (-INF) -> 20
+Posfijo (-POS) -> GEN
+Indices de padres -> C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\PARENTS.txt
+Validacion de padres
+Suma de valores -> 6225.0
+Todos los padres fueron validados
+------------------------------------------------------------
+PA -> C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\POPULATION\IND11GEN.bin
+PB -> C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\POPULATION\IND12GEN.bin
+PA -> PB Punto de inicio del ciclo -> 11
+PB -> PA Punto de inicio del ciclo -> 3
+DA -> IND21GEN.bin
+DB -> IND22GEN.bin
+------------------------------------------------------------
+PA -> C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\POPULATION\IND13GEN.bin
+PB -> C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\POPULATION\IND14GEN.bin
+No se cruzaron, pasan a la sig generacion 
+DA -> IND23GEN.bin
+DB -> IND24GEN.bin
+------------------------------------------------------------
+PA -> C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\POPULATION\IND15GEN.bin
+PB -> C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\POPULATION\IND16GEN.bin
+PA -> PB Punto de inicio del ciclo -> 0
+PB -> PA Punto de inicio del ciclo -> 36
+DA -> IND25GEN.bin
+DB -> IND26GEN.bin
+------------------------------------------------------------
+PA -> C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\POPULATION\IND17GEN.bin
+PB -> C:\Users\laloa\Documents\dev\genwikserver\WORK\ACTGEN_3_\POPULATION\IND18GEN.bin
+No se cruzaron, pasan a la sig generacion 
+DA -> IND27GEN.bin
+------------------------------------------------------------
+
+***************************************************************************

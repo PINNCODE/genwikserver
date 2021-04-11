@@ -28,6 +28,7 @@ const socketController = (socket) => {
     })
 
     socket.on('genUi', ( payload ) => {
+        console.log(payload)
         createUIElements(socket,payload)
         writeFileGUI(payload);
     })
@@ -45,8 +46,8 @@ const socketController = (socket) => {
     // work in
     socket.on('loadResult', (payload) => {
         console.log('Mostrando resultados')
-        socket.emit('resultReady')
-        createResult();
+        createResult(socket);
+
     })
 
 }
