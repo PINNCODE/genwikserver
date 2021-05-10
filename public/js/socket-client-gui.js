@@ -15,7 +15,12 @@ socket.on('disconnect', () => {
 });
 
 socket.on('gui-run', (payload) => {
+    let url = new URL(window.location);
+    //var c = url.searchParams.get("FWORK");
     console.log(payload)
+   payload.order[0].elementosGraficos.entradas.forEach( item => {
+        document.getElementById(item.param+'_'+payload.order[0].nombre).value = url.searchParams.get(item.param)
+    });
     filesData = payload;
 })
 

@@ -17,6 +17,7 @@ const getCarnetData = ( carnetData, socket ) => {
         (carnet, i) => {
             guiData.nombre = carnet.data.nivelCero.claveComponente;
             guiData.elementosGraficos.entradas = processInputs(carnet.data.nivelCero.sintaxis);
+            // FIX: Por defecto la salida se va en tipo rout
             guiData.elementosGraficos.salida.nombre = carnet.data.nivelCero.claveComponente;
             guiData.elementosGraficos.salida.tipo = 'rout';
 

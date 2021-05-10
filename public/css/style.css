@@ -1,3 +1,10 @@
+/*
+    overwrite
+*/
+.text-success {
+    color: #2bb735 !important;
+}
+
 .container{
     background-color: #F5F5F5;
 }

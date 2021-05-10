@@ -9,7 +9,6 @@ const socket = io();
 socket.on('connect', () => {
     serverStatus.innerHTML = 'Conectado';
     serverStatus.setAttribute('class', 'text-success');
-
 });
 
 /**

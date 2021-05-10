@@ -69,8 +69,7 @@
             </tbody>
         </table>
         <div class="d-grid gap-2">
-            <button class="btn btn-secondary" onclick="setNewParams()" type="button">Volver a ejecutar</button>
-            <button class="btn btn-primary" type="button">Cambiar parametros</button>
+            <button class="btn btn-secondary" onclick="setNewParams()" type="button"> <i class="fas fa-backward"></i> Volver a ejecutar</button>
         </div>
     </div>
 
@@ -87,6 +86,17 @@
     </div>
 
 </div>
+
+<div class="card mt-5 fade-in" id="genWikError">
+    <h5 class="card-header"> <i class="fas fa-bug"></i> Error al mostrar el resultado</h5>
+    <div class="card-body">
+        <p class="card-text">
+            <pre><code id="errorObj"></code></pre>
+        </p>
+        <a href="http://localhost:8080/gui" class="btn btn-primary"> <i class="fas fa-backward"></i> Reingresar parametros</a>
+    </div>
+</div>
+
 
 <script src="./socket.io/socket.io.js"></script>
 <script src="../js/socket-client-result.js"></script>

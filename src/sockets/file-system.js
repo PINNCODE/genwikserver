@@ -130,7 +130,6 @@ const parseInputs = (uiFrom) => {
 }
 
 const createInput = (formName, inputData) => {
-    console.log(inputData.tipoG)
     let inputField = '';
     switch (inputData.tipoG){
         case 'text':
@@ -238,14 +237,23 @@ const createResult = (socket) => {
     tokensSanitizer = tokensSanitizer.filter(item => item != '');
     let output = readJsonFile(`./src/${hbsDir}/partials/guiConfig.json`);
     fs.readFile(output.output, 'utf8', function(err, data) {
-        if (err) throw err;
-        console.log('OK: ' + path);
-        setTimeout(() => {
-            socket.emit('resultReady', {
-                values: tokensSanitizer,
-                output: data
-            })
-        });
+        if (err) {
+            console.warn(err)
+            setTimeout(() => {
+                socket.emit('resultReady', {
+                    error: true,
+                    output: err
+                })
+            });
+        }else{
+            console.log('OK: ' + path);
+            setTimeout(() => {
+                socket.emit('resultReady', {
+                    values: tokensSanitizer,
+                    output: data
+                })
+            });
+        }
     });
 
 
