@@ -18,8 +18,6 @@ socket.on('disconnect', () => {
 });
 
 socket.on('resultReady', (payload) => {
-    console.log('Resultado listo');
-    console.log(payload)
 
     this.params = payload.values;
 
@@ -61,6 +59,5 @@ const setNewParams = () => {
         }
     });
     urlParams = 'http://localhost:8080/gui?reload=true&' + urlParams;
-    console.log(urlParams)
     window.location.href = urlParams;
 }

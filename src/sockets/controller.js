@@ -1,7 +1,7 @@
 const { getCarnetData } = require('./design-patterns')
 const colors = require('colors')
 const { resetDir } = require("./file-system");
-const { readUIElements, createUIElements, writeFileGUI, readFileGUi, writeConfigFile, createResult } = require("./file-system");
+const { readUIElements, createUIElements, writeFileGUI, readFileGUi, writeConfigFile, writeConfigMultiFile, createResult } = require("./file-system");
 const dir = process.env.CONFIG_PATH;
 const hbsDir = process.env.HBS_PATH;
 
@@ -17,9 +17,8 @@ const socketController = (socket) => {
     });
 
     socket.on('loadFiles', ( payload ) => {
-        console.log('Cargando archivos...');
         resetDir(dir).then(
-            () => resetDir(`${hbsDir}/partials`).then( () => getCarnetData(payload , socket))
+            () => resetDir(`./src/${hbsDir}/partials`).then( () => getCarnetData(payload , socket))
         )
     })
 
@@ -28,7 +27,11 @@ const socketController = (socket) => {
     })
 
     socket.on('genUi', ( payload ) => {
-        console.log(payload)
+        createUIElements(socket,payload)
+        writeFileGUI(payload);
+    })
+
+    socket.on('genMultiUi', ( payload ) => {
         createUIElements(socket,payload)
         writeFileGUI(payload);
     })
@@ -39,13 +42,17 @@ const socketController = (socket) => {
     })
 
     // work in
+    socket.on('multiParams', (payload) => {
+        writeConfigMultiFile(payload, socket)
+    })
+
+    // work in
     socket.on('params', (payload) => {
         writeConfigFile(payload, socket)
     })
 
     // work in
     socket.on('loadResult', (payload) => {
-        console.log('Mostrando resultados')
         createResult(socket);
 
     })

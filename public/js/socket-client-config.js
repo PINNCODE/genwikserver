@@ -53,7 +53,6 @@ let filesData;
 let multComponents = false;
 
 const addCard = (components) => {
-    console.log('addCard')
     components.forEach((item, index) => {
         if (components.length){
             this.multComponents = true;
@@ -126,7 +125,6 @@ element.addEventListener('mouseup', allowDrop)
 
 
 function allowDrop(){
-    console.log('allowDrop')
     setTimeout( () => {
         var itemOrder = $('#sortableContainer').sortable("toArray");
         itemOrder.forEach( ( item, index ) => {
@@ -136,7 +134,6 @@ function allowDrop(){
 }
 
 const  setOutPutOptions = () => {
-    console.log('allowDrop')
     $( "#sortableContainer" ).sortable({
         disabled: true
     });
@@ -148,11 +145,12 @@ const  setOutPutOptions = () => {
             if (index != 0){
                 getOutput( item, index, itemOrder);
                 setInputs(item, index, itemOrder);
-            }else{
+            }
+            if (index === itemOrder.length - 1){
                 document.getElementById("outputDiv").style.display = "block";
                 document.getElementById("outputLabel").innerText = `Salida del componente ${item}`;
                 document.getElementById("outputAlert").innerText = `De acuerdo al ultimo componente ${item} (respecto al orden de ejecución) ingresa la ruta de la salida que se mostrara en la GUI`;
-                const { nombre , tipo } = filesData[0].elementosGraficos.salida;
+                const { nombre , tipo } = filesData.find(itemData => itemData.nombre === item).elementosGraficos.salida;
                 document.getElementById("outputInput").placeholder  = `${nombre} | ${tipo}`;
             }
         })
@@ -194,7 +192,6 @@ const getOutput = (item ,index, itemOrder) => {
 }
 
 const setInputs = (item ,index, itemOrder) => {
-    console.log('setInputs')
     let inputs = filesData.filter(
         data => itemOrder[index] === data.nombre
     );
@@ -225,30 +222,26 @@ const setInputs = (item ,index, itemOrder) => {
 }
 
 const getParams = () => {
-    console.log('getParams')
     document.getElementById("genAnimation").style.display = "flex";
     document.getElementById("genWik").style.display = "none";
     document.getElementById("nav").style.display = "none";
     let newParams = [];
     var itemOrder = $('#sortableContainer').sortable("toArray");
-    if (itemOrder.length) {
+    if (itemOrder.length <= 1) {
         let valueInput = document.getElementById(`outputInput`).value;
-        console.log(valueInput)
         let params = filesData.filter( data => itemOrder[0] === data.nombre);
-        newParams.push(params[0])
-        console.log(params)
+        newParams.push(params[0]);
         socket.emit('genUi', { order : newParams, output: valueInput});
     } else {
         itemOrder.forEach( ( item, index ) => {
             if (index === 0){
                 let params = filesData.filter( data => item === data.nombre);
-                newParams.push(params[0])
+                newParams.push(params)
             } else {
                 let input = document.getElementById(`${item}_select_input`).value;
                 let output = document.getElementById(`${item}_select_output`).value;
-                let params = filesData.map( data => {
+                let params = filesData.filter( data => {
                     if (item === data.nombre){
-                        console.log(data)
                         data.elementosGraficos.entradas.map( entrada => {
                             if (entrada.param === input){
                                 entrada.valorDefecto = output
@@ -256,11 +249,14 @@ const getParams = () => {
                             }
                             return entrada
                         })
+                        return data;
                     }
-                    return data;
                 });
+                newParams.push(params);
             }
         })
+        let valueInput = document.getElementById(`outputInput`).value;
+        socket.emit('genMultiUi', { order : newParams, output: valueInput});
     }
     
 }

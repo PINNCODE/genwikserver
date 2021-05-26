@@ -32,7 +32,6 @@ const writeFile = (data) => {
     Recibe la data de configuracion como parametro
  */
 const writeFileGUI = (data) => {
-    console.log(data)
     fs.writeFileSync(`./src/${hbsDir}/partials/guiConfig.json`, JSON.stringify(data), (err) => {
         if (err) console.log(`Error al escribir el archivo ${data.nombre}.json: `, err)
     })
@@ -58,7 +57,6 @@ const createDir = (dirPath) => {
     Elimina los directorios creados en una ejecución pasada para volver a crear una nueva GUI
  */
 const resetDir =  async (dirDelete) => {
-    console.log('Eliminando directorio: ',dirDelete)
     await fs.rmdirSync(dirDelete, { recursive: true });
 }
 
@@ -78,14 +76,15 @@ const readUIElements = async (socket) => {
     Emite una señal al socket y envia la data leida de la GUI
  */
 const createUIElements = (socket, data) => {
-    console.log('Creando hbs'.green)
     if (data.order.length === 1){
         createHbs(data.order[0])
         createGUI().then( socket.emit('gui-created', data) );
     }else{
         data.order.forEach( (component, index) => {
-            createHbs(component);
-            createGUI().then( socket.emit('gui-created', data) );
+            component.forEach( itemComponent => {
+                createHbs(itemComponent);
+                createGUI().then( socket.emit('gui-created', data) );
+            })
         })
     }
 
@@ -111,7 +110,7 @@ const createHbs = (uiElements) => {
  */
 
 const parseInputs = (uiFrom) => {
-    let partials = ''
+    let partials = '';
 
     uiFrom.elementosGraficos.entradas.forEach(
         input => {
@@ -148,7 +147,7 @@ const createInput = (formName, inputData) => {
                 </div>`
             fs.writeFileSync(`./src/${hbsDir}/partials/${formName}_${inputData.param}_input.hbs`,inputField)
             break;
-        case 'text':
+        case 'string':
             inputField = `
                 <div class="form-group col-6 mt-2">
                     <label for="exampleFormControlInput1">${inputData.param}</label>
@@ -205,11 +204,12 @@ const reWriteGUI = (partials) =>{
 
 const writeConfigFile = (data, socket) => {
     let comp = createComand();
-    comp = comp[0]
+    comp = comp.filter(components => components.includes(data.component))
+    console.log(comp)
     let parseData = '';
 
-    data.forEach(data => {
-        if(data.param != 'CONFIG') return parseData += `${data}\n`
+    data.params.forEach(param => {
+        if(param.param != 'CONFIG') return parseData += `${param}\n`
     });
 
     fs.writeFileSync(`CONFIG.txt`, parseData, (err) => {
@@ -226,6 +226,39 @@ const writeConfigFile = (data, socket) => {
             socket.emit('component-exec');
         }
     });
+}
+
+const writeConfigMultiFile = (data, socket) => {
+    let comp = createComand();
+    let parseData = '';
+    data.arrParams.forEach(item => {
+        item.forEach(data => {
+            if(data.param != 'CONFIG') return parseData += `${data}\n`
+        })
+    });
+
+
+    fs.writeFileSync(`CONFIG.txt`, parseData, (err) => {
+        if (err) console.log(`Error al escribir el archivo componentGUI.hbs: `, err)
+    });
+
+    const { exec} = require('child_process');
+
+    data.orderComponentes.forEach( component => {
+        comp.forEach(jar => {
+            if (jar.includes(component)){
+                exec(`java -jar ./components/${jar} -CONFIG CONFIG.txt`, (err, stdout, stderr) => {
+                    if (err) {
+                        console.error('->', err)
+                    } else {
+                        console.log(`Se ejecuto el componente ${comp}`)
+                        console.log(`stdout: ${stdout}`);
+                        socket.emit('component-exec');
+                    }
+                });
+            }
+        });
+    })
 }
 
 const createResult = (socket) => {
@@ -246,7 +279,6 @@ const createResult = (socket) => {
                 })
             });
         }else{
-            console.log('OK: ' + path);
             setTimeout(() => {
                 socket.emit('resultReady', {
                     values: tokensSanitizer,
@@ -268,6 +300,7 @@ module.exports = {
     writeFileGUI,
     readFileGUi,
     writeConfigFile,
+    writeConfigMultiFile,
     createComand,
     createResult
 };

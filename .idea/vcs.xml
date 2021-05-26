@@ -2,5 +2,36 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/1440__FAColocacionAP" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/Componentes/1400__GenGenetic" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/Componentes/1420__population" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/Componentes/1430__parar" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/Componentes/1440__FAFunMat1VarA" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/Componentes/1441__FA-AgenteViajero-TSP" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/Componentes/1455__OpSelElite" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/Componentes/1457__OpSelRuleta" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/Componentes/1458__OpSelTorneo" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/Componentes/1472__OpXUniforme" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/Componentes/1473__OpXCycle" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/Componentes/1474_OpXHUXProporcionalBN" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/Componentes/1475__OpX_Emparejamiento_Parcial" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/Componentes/1485__OPMutInversionBN" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/Componentes/1485__OpMutIntercambio" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/Componentes/1485__OpMutUniforme" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/Componentes/1487__OpMutInsertion" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/Componentes/1490__PlotFA" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/Componentes/Borrar" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/Componentes/Cruza_Por_Orden" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/GenInterface" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/GenInterface/1400__GenGenetic" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/GenInterface/1420__population" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/GenInterface/1430__parar" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/GenInterface/1430__parar/1475__OpX_Emparejamiento_Parcial" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/GenInterface/1440__FAColocacionAP" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/GenInterface/1440__FAFunMat1VarA" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/GenInterface/1455__OpSelElite" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/GenInterface/1457__OpSelRuleta" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/GenInterface/1475__OpX_Emparejamiento_Parcial" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TEMP_GENETIC/GenInterface/1490__PlotFA" vcs="Git" />
   </component>
 </project>

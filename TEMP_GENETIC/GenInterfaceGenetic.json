@@ -1,1 +1,234 @@
-{"nivelCero":{"claveComponente":"GenInterfaceGenetic","nombreComponente":"gengenetic","tipo":"Interfaz grafica","clasACM":"Software and its engineering","autores":[{"nombreAutor":"Eduardo Trujillo","correoAutor":"ing.trujillo@gmail.com","aliasGitlab":"ed_trujillo"}],"descProblema":"Prueba genetico","reqFuncionales":["N/A"],"reqNoFuncionales":["N/A"],"aportacion":"N/A","similitud":"N/A","sintaxis":[{"param":"FWORK","tipoparam":"rout","descripcion":"rout"},{"param":"OP1SEL","tipoparam":"rout","descripcion":"rout"},{"param":"OP2SEL","tipoparam":"rout","descripcion":"rout"},{"param":"OPCRUZA","tipoparam":"rout","descripcion":"rout"},{"param":"OPMUT","tipoparam":"rout","descripcion":"rout"},{"param":"OPFA","tipoparam":"rout","descripcion":"rout"},{"param":"OPSTOP","tipoparam":"rout","descripcion":"rout"},{"param":"OPPOP","tipoparam":"rout","descripcion":"rout"}]},"nivelUno":null,"nivelDos":null,"nivelTres":null,"nivelCuatro":null,"nivelCinco":null,"nivelSeis":null,"nivelSiete":null,"nivelOcho":null}
+{
+  "nivelCero":{
+    "claveComponente":"GenInterfaceGenetic",
+    "nombreComponente":"gengenetic",
+    "tipo":"Interfaz grafica",
+    "clasACM":"Software and its engineering",
+    "autores":[
+      {
+        "nombreAutor":"Eduardo Trujillo",
+        "correoAutor":"ing.trujillo@gmail.com",
+        "aliasGitlab":"ed_trujillo"
+      }
+    ],
+    "descProblema":"Prueba genetico",
+    "reqFuncionales":[
+      "N/A"
+    ],
+    "reqNoFuncionales":[
+      "N/A"
+    ],
+    "aportacion":"N/A",
+    "similitud":"N/A",
+    "sintaxis":[
+      {
+        "param":"VMAXINT",
+        "tipoparam":"int",
+        "descripcion":"VMAXINT"
+      },
+      {
+        "param":"TYPE",
+        "tipoparam":"string",
+        "descripcion":"TYPE"
+      },
+      {
+        "param":"PRE",
+        "tipoparam":"string",
+        "descripcion":"PRE"
+      },
+      {
+        "param":"INF",
+        "tipoparam":"int",
+        "descripcion":"INF"
+      },
+      {
+        "param":"POS",
+        "tipoparam":"string",
+        "descripcion":"POS"
+      },
+      {
+        "param":"REPEAT",
+        "tipoparam":"string",
+        "descripcion":"REPEAT"
+      },
+      {
+        "param":"MAXGEN",
+        "tipoparam":"int",
+        "descripcion":"MAXGEN"
+      },
+      {
+        "param":"FFA",
+        "tipoparam":"rout",
+        "descripcion":"FFA"
+      },
+      {
+        "param":"FAFMAMIN",
+        "tipoparam":"rout",
+        "descripcion":"FAFMAMIN"
+      },
+      {
+        "param":"FAFMAMAX",
+        "tipoparam":"rout",
+        "descripcion":"FAFMAMAX"
+      },
+      {
+        "param":"FWORK",
+        "tipoparam":"rout",
+        "descripcion":"Ruta de trabajo donde se van a crear las generaciones"
+      },
+      {
+        "param":"FACTG",
+        "tipoparam":"rout",
+        "descripcion":"Prefijo del nombre de la subcarpeta donde se encuentra la generación actual."
+      },
+      {
+        "param":"FFA",
+        "tipoparam":"rout",
+        "descripcion":"Subruta con el nombre de la carpeta donde está la función de aptitud"
+      },
+      {
+        "param":"NELITE",
+        "tipoparam":"rout",
+        "descripcion":"Número de mejores individuos que se van a pasar a la siguiente generación"
+      },
+      {
+        "param":"FELITE",
+        "tipoparam":"string",
+        "descripcion":"Best.txt"
+      },
+      {
+        "param":"NDIED",
+        "tipoparam":"int",
+        "descripcion":"Número de individuos que va a morir en esta generación"
+      },
+      {
+        "param":"FSELECT",
+        "tipoparam":"string",
+        "descripcion":"Archivo que guardará los nombres de los individuos seleccionados"
+      },
+      {
+        "param":"FWORK",
+        "tipoparam":"rout",
+        "descripcion":"Se espera el ingreso de una ruta o nombre de fichero"
+      },
+      {
+        "param":"FACTG",
+        "tipoparam":"int",
+        "descripcion":"Fichero donde se encuentra la generación actual"
+      },
+      {
+        "param":"FNEXTG",
+        "tipoparam":"int",
+        "descripcion":"Fichero donde se almacenará la siguiente generación"
+      },
+      {
+        "param":"FPOP",
+        "tipoparam":"int",
+        "descripcion":"Fichero donde se encuentra almacenada la población"
+      },
+      {
+        "param":"FSELECT",
+        "tipoparam":"int",
+        "descripcion":"Archivo de texto, donde se guardará la selección"
+      },
+      {
+        "param":"THREADSCRUZA",
+        "tipoparam":"int",
+        "descripcion":"Es la cantidad de hilos en la que se quiere ejecutar, el componente, 0 es para ejecutar con el número total de núcleos -1, 1 es para ejecución secuencial, 2 para ejecutar en 2 hilos, 3 en 3 hilos... 8 en 8 núcleos"
+      },
+      {
+        "param":"NCHILD",
+        "tipoparam":"int",
+        "descripcion":"Cantidad de hijos que se quieren obtener de la cruza,  debe ser 1 o 2."
+      },
+      {
+        "param":"HISTORYCRUZA",
+        "tipoparam":"boolean",
+        "descripcion":"Es el parámetro que indica si se requiere información de la procedencia de los hijos resultantes de la cruza, la información que se puede obtener es identificador de los padres y puntos de cruza."
+      },
+      {
+        "param":"NI",
+        "tipoparam":"int",
+        "descripcion":"Número de individuos"
+      },
+      {
+        "param":"NELITE",
+        "tipoparam":"int",
+        "descripcion":"Número de individuos más áptos"
+      },
+      {
+        "param":"FWORK",
+        "tipoparam":"rout",
+        "descripcion":"Ruta de trabajo donde se toman en cuenta los descendientes de la cruza para aplicar la mutación de los mismos."
+      },
+      {
+        "param":"FNEXTG",
+        "tipoparam":"rout",
+        "descripcion":"SubRuta con la generación de individuos a mutar"
+      },
+      {
+        "param":"FPOP",
+        "tipoparam":"rout",
+        "descripcion":"SubRuta de -FNEXTG que contiene toda la población de descendientes."
+      },
+      {
+        "param":"PMUT",
+        "tipoparam":"float",
+        "descripcion":"Probabilidad de mutación de cada gen del individuo, si no se especifica este valor se establece con el valor de 1.0 por defecto. "
+      },
+      {
+        "param":"REPORTINS",
+        "tipoparam":"int",
+        "descripcion":"Nombre del archivo de texto que almacena el reporte generado, si no se especifica no genera el archivo."
+      },
+      {
+        "param":"FWORK",
+        "tipoparam":"rout",
+        "descripcion":"rout"
+      },
+      {
+        "param":"OP1SEL",
+        "tipoparam":"rout",
+        "descripcion":"rout"
+      },
+      {
+        "param":"OP2SEL",
+        "tipoparam":"rout",
+        "descripcion":"rout"
+      },
+      {
+        "param":"OPCRUZA",
+        "tipoparam":"rout",
+        "descripcion":"rout"
+      },
+      {
+        "param":"OPMUT",
+        "tipoparam":"rout",
+        "descripcion":"rout"
+      },
+      {
+        "param":"OPFA",
+        "tipoparam":"rout",
+        "descripcion":"rout"
+      },
+      {
+        "param":"OPSTOP",
+        "tipoparam":"rout",
+        "descripcion":"rout"
+      },
+      {
+        "param":"OPPOP",
+        "tipoparam":"rout",
+        "descripcion":"rout"
+      }
+    ]
+  },
+  "nivelUno":null,
+  "nivelDos":null,
+  "nivelTres":null,
+  "nivelCuatro":null,
+  "nivelCinco":null,
+  "nivelSeis":null,
+  "nivelSiete":null,
+  "nivelOcho":null
+}
