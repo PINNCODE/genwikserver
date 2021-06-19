@@ -67,7 +67,12 @@ const executeComponent = () => {
         filesData.order.forEach( data => {
             component = data.nombre;
             let params = data.elementosGraficos.entradas.map( inputs => {
-                let valueInput = document.getElementById(`${inputs.param}_${data.nombre}`).value;
+                let valueInput = '';
+                if (inputs.tipoparam == "boolean"){
+                     valueInput = document.getElementById(`${inputs.param}_${data.nombre}`).checked;
+                } else {
+                    valueInput = document.getElementById(`${inputs.param}_${data.nombre}`).value;
+                }
                 return `-${inputs.param} ${valueInput}`;
             });
             setTimeout(() => {

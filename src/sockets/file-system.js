@@ -110,12 +110,15 @@ const createHbs = (uiElements) => {
  */
 
 const parseInputs = (uiFrom) => {
+
+    let totalInputs =  uiFrom.elementosGraficos.entradas.length;
+    let grids = totalInputs <= 2 ? 6 : totalInputs === 3 ? 4 : totalInputs <= 8 ? 3 : totalInputs <= 12 ? 2 : 1;
     let partials = '';
 
     uiFrom.elementosGraficos.entradas.forEach(
         input => {
             partials += `{{> ${uiFrom.nombre}_${input.param}_input }} \n`
-            createInput(uiFrom.nombre,input)
+            createInput(uiFrom.nombre,input, grids)
         }
     )
 
@@ -128,12 +131,12 @@ const parseInputs = (uiFrom) => {
 
 }
 
-const createInput = (formName, inputData) => {
+const createInput = (formName, inputData, gridNumber) => {
     let inputField = '';
     switch (inputData.tipoG){
         case 'text':
             inputField = `
-                <div class="form-group col-6 mt-2">
+                <div class="form-group col-${gridNumber} mt-2">
                     <label for="exampleFormControlInput1">${inputData.param}</label>
                     <input type="${inputData.tipoG}" class="form-control" id="${inputData.param}_${formName}" placeholder="${inputData.descripcion}">
                 </div>`
@@ -141,15 +144,24 @@ const createInput = (formName, inputData) => {
             break;
         case 'number':
             inputField = `
-                <div class="form-group col-6 mt-2">
+                <div class="form-group col-${gridNumber} mt-2">
                     <label for="exampleFormControlInput1">${inputData.param}</label>
                     <input type="${inputData.tipoG}" class="form-control" id="${inputData.param}_${formName}" placeholder="${inputData.descripcion}" step="${inputData.decimales}">
                 </div>`
             fs.writeFileSync(`./src/${hbsDir}/partials/${formName}_${inputData.param}_input.hbs`,inputField)
             break;
         case 'string':
+        case 'ruta_bin':
             inputField = `
-                <div class="form-group col-6 mt-2">
+                <div class="form-group col-${gridNumber} mt-2">
+                    <label for="exampleFormControlInput1">${inputData.param}</label>
+                    <input type="${inputData.tipoG}" class="form-control" id="${inputData.param}_${formName}" placeholder="${inputData.descripcion}" pattern="${inputData.expresionRegular}">
+                </div>`
+            fs.writeFileSync(`./src/${hbsDir}/partials/${formName}_${inputData.param}_input.hbs`,inputField)
+            break;
+        case 'date':
+            inputField = `
+                <div class="form-group col-${gridNumber} mt-2">
                     <label for="exampleFormControlInput1">${inputData.param}</label>
                     <input type="${inputData.tipoG}" class="form-control" id="${inputData.param}_${formName}" placeholder="${inputData.descripcion}" pattern="${inputData.expresionRegular}">
                 </div>`
@@ -157,7 +169,7 @@ const createInput = (formName, inputData) => {
             break;
         case 'checkbox':
             inputField = `
-                <div class="form-group form-check col-6 mt-2">
+                <div class="form-group form-check col-${gridNumber} mt-2 custom-check-box">
                     <input class="form-check-input" id="${inputData.param}_${formName}" type="${inputData.tipoG}" value="${inputData.valorDefecto}">
                     <label class="form-check-label" >
                         ${inputData.param}
@@ -203,29 +215,31 @@ const reWriteGUI = (partials) =>{
 }
 
 const writeConfigFile = (data, socket) => {
+    const { exec } = require('child_process');
     let comp = createComand();
     comp = comp.filter(components => components.includes(data.component))
-    console.log(comp)
     let parseData = '';
 
     data.params.forEach(param => {
-        if(param.param != 'CONFIG') return parseData += `${param}\n`
+        if(param.param !== 'CONFIG') return parseData += `${param}\n`
     });
 
     fs.writeFileSync(`CONFIG.txt`, parseData, (err) => {
-        if (err) console.log(`Error al escribir el archivo componentGUI.hbs: `, err)
+        if (err) console.log(`Error al escribir el archivo componentGUI.hbs: `, err);
+        console.log(`Archivo CONFIG.txt creado`)
     });
 
-    const { exec} = require('child_process');
     exec(`java -jar ./components/${comp} -CONFIG CONFIG.txt`, (err, stdout, stderr) => {
         if (err) {
             console.error('->', err)
         } else {
             console.log(`Se ejecuto el componente ${comp}`)
             console.log(`stdout: ${stdout}`);
+            console.log(`stderr: ${stderr}`);
             socket.emit('component-exec');
         }
     });
+
 }
 
 const writeConfigMultiFile = (data, socket) => {
@@ -244,21 +258,23 @@ const writeConfigMultiFile = (data, socket) => {
 
     const { exec} = require('child_process');
 
+    console.log(data.orderComponentes);
     data.orderComponentes.forEach( component => {
         comp.forEach(jar => {
             if (jar.includes(component)){
+                console.log(`Ejecutando el comando java -jar ./components/${jar} -CONFIG CONFIG.txt`)
                 exec(`java -jar ./components/${jar} -CONFIG CONFIG.txt`, (err, stdout, stderr) => {
                     if (err) {
                         console.error('->', err)
                     } else {
-                        console.log(`Se ejecuto el componente ${comp}`)
+                        console.log(`Se ejecuto el componente ${jar}`)
                         console.log(`stdout: ${stdout}`);
                         socket.emit('component-exec');
                     }
                 });
             }
         });
-    })
+    });
 }
 
 const createResult = (socket) => {

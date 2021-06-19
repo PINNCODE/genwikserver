@@ -36,11 +36,14 @@ socket.on('config-files-success', (payload) => {
 // Referencias del HTML
 const serverStatus  = document.querySelector('#serverStatus');
 const formFiles = document.querySelector("#formFiles");
+const formField = document.querySelector("#form");
+const helper = document.querySelector("#helper");
 const btnLoad = document.querySelector('#btnLoad');
 
 // DOM
 document.getElementById("genAnimation").style.display = "none";
 document.getElementById("table").style.display = "none";
+formField.style.display = "none";
 formFiles.addEventListener('change', handleFiles, false);
 
 // Variables
@@ -108,4 +111,21 @@ const readFile = (file, onLoadCallback) => {
     reader.onload = onLoadCallback;
 }
 
+const oneComponent = () => {
+    helper.style.display = "none";
+    formField.style.display = 'block'
+    formFiles.multiple = false;
+}
+
+const multiComponents = () => {
+    helper.style.display = "none";
+    formField.style.display = 'block'
+    formFiles.multiple = true;
+}
+
+const genetic = () => {
+    helper.style.display = "none";
+    formField.style.display = 'block'
+    formFiles.multiple = true;
+}
 

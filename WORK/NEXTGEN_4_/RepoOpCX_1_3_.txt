@@ -1,0 +1,45 @@
+*****************************  REPORTE  **********************************
+Ruta de trabajo (-FWORK): E:\Universidad\Computo Evolutivo\Componentes\1473__OpXCycle\Test_1\WORK
+Numero de individuos generados (-NI: 10) - (-NELITE: 3) = 7
+DETALLE
+Operador CX
+Generación -> 3
+-XPROB: 100
+Poblacion de padres: E:\Universidad\Computo Evolutivo\Componentes\1473__OpXCycle\Test_1\WORK\ACTGEN_3_\POPULATION
+Prefijo (-PRE) -> IND
+Infijo (-INF) -> 20
+Posfijo (-POS) -> GEN
+Indices de padres -> E:\Universidad\Computo Evolutivo\Componentes\1473__OpXCycle\Test_1\WORK\ACTGEN_3_\PARENTS.txt
+Validacion de padres
+Suma de valores -> 6225.0
+Todos los padres fueron validados
+------------------------------------------------------------
+PA -> E:\Universidad\Computo Evolutivo\Componentes\1473__OpXCycle\Test_1\WORK\ACTGEN_3_\POPULATION\IND11GEN.bin
+PB -> E:\Universidad\Computo Evolutivo\Componentes\1473__OpXCycle\Test_1\WORK\ACTGEN_3_\POPULATION\IND12GEN.bin
+PA -> PB Punto de inicio del ciclo -> 49
+PB -> PA Punto de inicio del ciclo -> 12
+DA -> IND21GEN.bin
+DB -> IND22GEN.bin
+------------------------------------------------------------
+PA -> E:\Universidad\Computo Evolutivo\Componentes\1473__OpXCycle\Test_1\WORK\ACTGEN_3_\POPULATION\IND13GEN.bin
+PB -> E:\Universidad\Computo Evolutivo\Componentes\1473__OpXCycle\Test_1\WORK\ACTGEN_3_\POPULATION\IND14GEN.bin
+PA -> PB Punto de inicio del ciclo -> 22
+PB -> PA Punto de inicio del ciclo -> 9
+DA -> IND23GEN.bin
+DB -> IND24GEN.bin
+------------------------------------------------------------
+PA -> E:\Universidad\Computo Evolutivo\Componentes\1473__OpXCycle\Test_1\WORK\ACTGEN_3_\POPULATION\IND15GEN.bin
+PB -> E:\Universidad\Computo Evolutivo\Componentes\1473__OpXCycle\Test_1\WORK\ACTGEN_3_\POPULATION\IND16GEN.bin
+PA -> PB Punto de inicio del ciclo -> 22
+PB -> PA Punto de inicio del ciclo -> 21
+DA -> IND25GEN.bin
+DB -> IND26GEN.bin
+------------------------------------------------------------
+PA -> E:\Universidad\Computo Evolutivo\Componentes\1473__OpXCycle\Test_1\WORK\ACTGEN_3_\POPULATION\IND17GEN.bin
+PB -> E:\Universidad\Computo Evolutivo\Componentes\1473__OpXCycle\Test_1\WORK\ACTGEN_3_\POPULATION\IND18GEN.bin
+PA -> PB Punto de inicio del ciclo -> 16
+PB -> PA Punto de inicio del ciclo -> 41
+DA -> IND27GEN.bin
+------------------------------------------------------------
+
+***************************************************************************

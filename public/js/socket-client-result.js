@@ -1,7 +1,8 @@
 const socket = io();
 
 // Ref HTML
-document.getElementById("genWik").style.display = "none";
+document.getElementById("genWik").style.display = "flex";
+document.getElementById("genAnimation").style.display = "none";
 document.getElementById("genWikError").style.display = "none";
 let paramsTable = document.getElementById("paramsTable");
 

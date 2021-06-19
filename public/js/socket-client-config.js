@@ -1,3 +1,7 @@
+// Variables
+let filesData;
+let multComponents = false;
+
 /**
  * Socket lib
  */
@@ -26,6 +30,7 @@ socket.on('disconnect', () => {
 socket.on('config-files-read', (payload) => {
     if (payload) {
         filesData = payload;
+        filesData.length <= 1 ? multiFiles = false : multiFiles = true;
         addCard(payload)
     }
 })
@@ -48,14 +53,17 @@ document.getElementById("outputDiv").style.display = "none";
 document.getElementById("genAnimation").style.display = "none";
 document.getElementById("btnGen").style.display = "none";
 
-// Variables
-let filesData;
-let multComponents = false;
+
 
 const addCard = (components) => {
     components.forEach((item, index) => {
-        if (components.length){
+        if (components.length > 1){
             this.multComponents = true;
+       }else{
+            $( "#sortableContainer" ).sortable({
+                disabled: true
+            });
+            setOutPutOptions();
         }
         let card = document.createElement("div");
         card.setAttribute("class", "card mt-2");
@@ -106,7 +114,7 @@ const addCard = (components) => {
         cardText.setAttribute("class", "card-text");
 
         nodeText = document.createTextNode(
-            `-${item.elementosGraficos.salida.nombre} | [ ${item.elementosGraficos.salida.tipo}]`
+            `-${item.elementosGraficos.salida.param} | [ ${item.elementosGraficos.salida.tipo}]`
         );
 
         cardText.appendChild(nodeText);
@@ -149,9 +157,15 @@ const  setOutPutOptions = () => {
             if (index === itemOrder.length - 1){
                 document.getElementById("outputDiv").style.display = "block";
                 document.getElementById("outputLabel").innerText = `Salida del componente ${item}`;
-                document.getElementById("outputAlert").innerText = `De acuerdo al ultimo componente ${item} (respecto al orden de ejecución) ingresa la ruta de la salida que se mostrara en la GUI`;
-                const { nombre , tipo } = filesData.find(itemData => itemData.nombre === item).elementosGraficos.salida;
-                document.getElementById("outputInput").placeholder  = `${nombre} | ${tipo}`;
+                if (!multComponents){
+                    document.getElementById("outputAlert").style.display = "none";
+                }else{
+                    document.getElementById("outputAlert").innerText = `De acuerdo al ultimo componente ${item} (respecto al orden de ejecución) ingresa la ruta de la salida que se mostrara en la GUI`;
+                }
+                const { param , tipo, valorPorDefecto } = filesData.find(itemData => itemData.nombre === item).elementosGraficos.salida;
+                console.log(valorPorDefecto)
+                document.getElementById("outputInput").placeholder  = `${param} | ${tipo}`;
+                document.getElementById("outputInput").value  = `${valorPorDefecto}`;
             }
         })
     }, 100);

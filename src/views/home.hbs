@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
     <!-- FONT AWESOME -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-</head>
+</head><!--body-flex-->
 <body class="container body-flex">
 
 <div id="genAnimation" class="fade-in">
@@ -54,7 +54,7 @@
 
 <div class="row mt-5 mb-5 fade-in" id="genWik">
 
-    <div class="col-md-12 text-center">
+   <div class="col-md-12 text-center">
         <h1 class="genwik-font genwik-title">
             GenWik Server
             <h6>v1</h6>
@@ -64,10 +64,35 @@
         <hr>
     </div>
 
-    <div id="form">
+    <div id="helper" class="helper-container fade-out">
+
+        <div class="card card-custom text-center" style="width: 15rem;" onclick="oneComponent()">
+            <div class="card-body">
+                <img class="pb-4 img-atom" src="https://www.svgrepo.com/show/179407/atoms-medical.svg" style="width: 80px; height: auto" alt="puzzle">
+                <p class="card-text">Un solo componente</p> <br>
+            </div>
+        </div>
+
+        <div class="card card-custom text-center" style="width: 15rem; height: auto" onclick="multiComponents()">
+            <div class="card-body">
+                <img class="pb-4 img-atom" src="https://www.svgrepo.com/show/179405/atoms-medical.svg" style="width: 80px; height: auto" alt="puzzle">
+                <p class="card-text">Componentes conectados entre entradas y salidas</p>
+            </div>
+        </div>
+
+        <div class="card card-custom text-center" style="width: 15rem;" onclick="genetic()">
+            <div class="card-body">
+                <img class="pb-4 img-atom" src="https://www.svgrepo.com/show/50570/dna.svg" style="width: 80px; height: auto" alt="puzzle">
+                <p class="card-text">Algoritmo genético</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="form" class=" fade-in">
         <div class="col-md-12">
             <div class=" mb-3 text-center width-elements">
-                <input class="form-control" type="file" id="formFiles" multiple>
+                <input class="form-control" type="file" id="formFiles" >
                 <label class="form-label mt-2">Seleccione uno o más archivos carnet</label>
             </div>
         </div>
@@ -87,6 +112,195 @@
             </div>
         </div>
     </div>
+
+    <!--<div class="col-md-12">
+
+        <h1><strong>1487__OpMutInsertion</strong></h1>
+        <p>Operador de mutación por inserción del Algoritmo Genético</p>
+        <hr>
+
+        <div class="card" >
+            <div class="card-body">
+                <h5 class="card-title">1487__OpMutInsertion</h5>
+                <h6 class="card-subtitle mb-2 text-muted"><strong>Nombre:</strong> Operador de mutación por inserción del Algoritmo Genético</h6>
+                <h6 class="card-subtitle mb-2 text-muted"><strong>Tipo:</strong> Orientado al servicio</h6>
+                <h6 class="card-subtitle mb-2 text-muted"><strong>Clasificación ACM:</strong> Software and its engineering</h6>
+                <hr>
+                <div class="card-text">
+                    <h6>Descripción del problema</h6>
+                    Este módulo realiza la mutación de un conjunto de individuos para modificar algunas de sus características tomando en cuenta el algoritmo de mutación por inserción y también a partir de una probabilidad determinada por el usuario.
+                    <br><br>
+                    Para el correcto funcionamiento del Algoritmo Genético con este operador se recomienda utilizar probabilidades de mutación menores a 15, debido a que es posible generar una meyor descomposición de la población si se toman valores\nde probabilidad mayores a 15.
+                </div>
+                <div class="card-text mt-4">
+                    <h6>Autores</h6>
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <td><img style="width: 16px" src="https://img.icons8.com/nolan/64/user-male-circle.png"/> Ing. Jonathan Rojas Simón</td>
+                            <td><img style="width: 16px" src="https://img.icons8.com/nolan/64/email.png"/> IDS_Jonathan_Rojas@hotmail.com</td>
+                            <td><img style="width: 16px" src="https://img.icons8.com/nolan/64/gitlab.png"/> @IDS_Jonathan_Rojas</td>
+                        </tr>
+                        <tr>
+                            <td><img style="width: 16px" src="https://img.icons8.com/nolan/64/user-male-circle.png"/> Dr. René Arnulfo García Hernández</td>
+                            <td><img style="width: 16px" src="https://img.icons8.com/nolan/64/email.png"/> renearnulfo@hotmail.com</td>
+                            <td><img style="width: 16px" src="https://img.icons8.com/nolan/64/gitlab.png"/> @renearnulfo</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-2">
+            <div class="card-body">
+                <div class="card-text">
+                    <h6>Requerimientos funcionales</h6>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad assumenda, beatae, dignissimos enim eos facere ipsam libero molestias nisi nostrum tenetur voluptatibus. Commodi deleniti dolorem eum hic optio, vitae?
+                </div>
+                <div class="card-text mt-4">
+                    <h6>Requerimientos no funcionales</h6>
+                    N/A
+                </div>
+                <div class="card-tex mt-4">
+                    <h6>Aportación</h6>
+                    N/A
+                </div>
+                <div class="card-text mt-4">
+                    <h6>Similitud</h6>
+                    N/A
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-2">
+            <div class="card-body">
+                <div class="card-text">
+                    <h6>Sintaxis</h6>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Parámetro</th>
+                            <th scope="col">Valor</th>
+                            <th scope="col">Descripción</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>FWORK</td>
+                            <td>rout</td>
+                            <td>Ruta de trabajo donde se toman en cuenta los descendientes de la cruza para aplicar la mutación de los mismos.</td>
+                        </tr>
+                        <tr>
+                            <td>FNEXTG</td>
+                            <td>rout</td>
+                            <td>SubRuta de -FNEXTG que contiene toda la población de descendientes.</td>
+                        </tr>
+                        <tr>
+                            <td>PMUT</td>
+                            <td>float</td>
+                            <td>Probabilidad de mutación de cada gen del individuo, si no se especifica este valor se establece con el valor de 1.0 por defecto.</td>
+                        </tr>
+                        <tr>
+                            <td>REPORTINS</td>
+                            <td>rout</td>
+                            <td>Nombre del archivo de texto que almacena el reporte generado, si no se especifica no genera el archivo</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-2">
+            <div class="card-body">
+                <div class="card-text">
+                    <h6>Descripción caso complejo 1</h6>
+                    <hr>
+                    El componente realiza la lectura de la carpeta WORK a partir de la
+                    especificación de la etiqueta @WORK_PATH@, donde se determinará por automático
+                    el directorio donde se está ejecutando este componente.
+                    Ejemplo. Si se ejecuta este componente en el directorio C:\GENGEN\test1,
+                    entonces la etiqueta @WORK_PATH@ será sustituida por C:\GENGEN\test1. <br><br>
+
+                    A partir de ese directorio, se realizará una lectura de todos los individuos
+                    contenidos en POPULATION (el directorio POPULATION debe estar contenido en
+                    NEXTGEN_4_ y WORK) para realizar el proceso de mutacián de cada uno de los
+                    individuos, tomando una probabilidad de 1.0 (establecida por defecto en escala
+                    de 0 a 100).<br><br>
+
+                    En caso de que alguno de los individuos haya entrado en esta probabilidad se
+                    guarda su nombre en el archivo MUTATED.TXT, el cual almacena los nombres de
+                    los indidivuos mutados. Además de este archivo, se genera un reporte de las
+                    operaciones de mutacián realizadas en cada individuo en el archivo
+                    "Report_Ins_4.txt". En caso de que este archivo no de especifique como
+                    parámetro no se generará el reporte.
+                </div>
+                <div class="card-text">
+                    <h6>Parámetros de ejecución</h6>
+                    <hr>
+                    -FWORK     @WORK_PATH@\\WORK <br>
+                    -FNEXTG    NEXTGEN_4_ <br>
+                    -FPOP POPULATION <br>
+                    -REPORTINS  Report_Ins_4.txt <br>
+                </div>
+                <div class="text-center">
+                    <a href="#" class="btn btn-primary mt-3"> <i class="fas fa-play"></i> Ejecutar caso complejo 1</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-2">
+            <div class="card-body">
+                <div class="card-text">
+                    <h6>Descripción caso complejo 2</h6>
+                    <hr>
+                    El componente realiza la lectura de la carpeta WORK a partir de la especificación de la etiqueta @WORK_PATH@, donde se determinar� por automótico
+                    el directorio donde se está ejecutando este componente.
+                    <br><br>
+                    Ejemplo. Si se ejecuta este componente en el directorio C:\GENGEN\test1, entonces la etiqueta @WORK_PATH@ será sustituida por C:\GENGEN\test1.
+                    <br><br>
+                    A partir de ese directorio, se realizará una lectura de todos los individuos contenidos en POPULATION (el directorio POPULATION debe estar contenido en
+                    NEXTGEN_4_ y WORK) para realizar el proceso de mutación de cada uno de los individuos, tomando una probabilidad de 0.3 (en escala de 0 a 100).
+                    <br><br>
+                    En caso de que alguno de los individuos haya entrado en esta probabilidad se guarda su nombre en el archivo MUTATED.TXT, el cual almacena los nombres de los
+                    indidivuos mutados.
+                    <br><br>
+                    Además de este archivo, se genera un reporte de las operaciones de mutación
+                    realizadas en cada individuo en el archivo "Report_Ins_5.txt". En caso de que
+                    este archivo no de especifique como parámetro no se generará el reporte.
+                </div>
+                <div class="card-text">
+                    <h6>Parámetros de ejecución</h6>
+                    <hr>
+                    -FWORK      @WORK_PATH@\WORK <br>
+                    -FNEXTG     NEXTGEN_4_ <br>
+                    -FPOP       POPULATION <br>
+                    -PMUT       0.3 <br>
+                    -REPORTINS  Report_Ins_5.txt <br>
+                </div>
+                <div class="text-center">
+                    <a href="#" class="btn btn-primary mt-3"> <i class="fas fa-play"></i> Ejecutar caso complejo 2</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-2">
+            <div class="card-body">
+                <div class="card-text">
+                    <h6>Referencias</h6>
+                    (Fogel, 1988)  Fogel, D. B. (1988). An evolutionary approach to the traveling salesman problem. Biological Cybernetics, 60(2), 139-144.
+                    <br><br>
+
+                    (Larranaga et al., 1999) - Larranaga, P., Kuijpers, C. M. H., Murga, R. H., Inza, I., & Dizdarevic, S. (1999). Genetic algorithms for the travelling salesman problem: A review of representations and operators. Artificial Intelligence Review, 13(2), 129-170.<br><br>
+
+                    (Michalewicz & Hartley, 1996) - Michalewicz, Z., & Hartley, S. J. (1996). Genetic algorithms+ data structures= evolution programs. Mathematical Intelligencer, 18(3), 71.
+
+                </div>
+            </div>
+        </div>
+
+    </div>-->
 
 </div>
 

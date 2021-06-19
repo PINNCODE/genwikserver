@@ -16,9 +16,9 @@ const getCarnetData = ( carnetData, socket ) => {
         (carnet, i) => {
             guiData.nombre = carnet.data.nivelCero.claveComponente;
             guiData.elementosGraficos.entradas = processInputs(carnet.data.nivelCero.sintaxis);
-            // FIX: Por defecto la salida se va en tipo rout
-            guiData.elementosGraficos.salida.nombre = carnet.data.nivelCero.claveComponente;
-            guiData.elementosGraficos.salida.tipo = 'rout';
+            guiData.elementosGraficos.salida.param =carnet.data.nivelCero.salida.param;
+            guiData.elementosGraficos.salida.valorPorDefecto =carnet.data.nivelCero.salida.valorPorDefecto;
+            guiData.elementosGraficos.salida.tipo = carnet.data.nivelCero.salida.tipoparam;
 
             guiConfigFile(guiData)
             if (carnetData.length - 1 === i){
@@ -39,8 +39,12 @@ const processInputs =  (inputs) => {
                return floatPattern(input)
                break;
            case 'rout':
+           case 'rout_bin':
            case 'string':
                return routPattern(input)
+               break;
+           case 'date':
+               return datePattern(input);
                break;
            case 'boolean':
                return booleanPattern(input)
@@ -76,6 +80,15 @@ const floatPattern = (input) => {
 
 const routPattern = (input) => {
     input.tipoG = 'text';
+    input.valorDefecto = null;
+    input.soloLectura = false;
+    input.oculto = false;
+    input.expresionRegular = ''
+    return input;
+}
+
+const datePattern = (input) => {
+    input.tipoG = 'date';
     input.valorDefecto = null;
     input.soloLectura = false;
     input.oculto = false;
